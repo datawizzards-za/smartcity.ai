@@ -8,6 +8,8 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+.idea/
+migrations/*__initial.py
 env/
 build/
 develop-eggs/
