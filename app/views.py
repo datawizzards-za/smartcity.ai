@@ -5,8 +5,11 @@ from django.shortcuts import render
 from django.views import View
 
 # Create your views here.
-class Home(View):
-	template_name = 'app/index.html'
-	def get(self, request):
-		context = {'hello':'hello there'}
-		return render(request, self.template_name, context)
+
+
+class EmployeeInbox(View):
+    template_name = 'app/employee.inbox.html'
+
+    def get(self, request):
+        context = {''}
+        return render(request, self.template_name, context)
