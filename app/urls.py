@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^\Z$', views.TaskMan.as_view(), name='home'),
     url(r'^task-man/$', views.TaskMan.as_view(), name='task-man'),
     url(r'^vacancies/$', views.Vacancies.as_view(), name='vacancies'),
+    url(r'^load_employees_data/$', views.LoadEmployeesData.as_view(), 
+        name='load_employees_data'),
     url(r'^address/(?P<username>\w+)/', api_views.GetClientAddress.as_view(),
         name='address'),
     url(r'^faults/(?P<reporter>\w+)/', api_views.GetFaults.as_view(),
@@ -23,5 +25,4 @@ urlpatterns = [
         name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^register/$', views.RegisterUserView.as_view(), name='register'),
-
 ]
