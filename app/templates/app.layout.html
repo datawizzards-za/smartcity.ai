@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'styles/main.min.css' %}">
     <link rel="stylesheet" href="{% static 'styles/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/hover-min.css' %}">
 
     <!-- Match Media polyfill for IE9 -->
     <!--[if IE 9]> <script src="scripts/ie/matchMedia.js"></script>  <![endif]-->
@@ -130,20 +131,15 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li>
-                        <a href="javascript:;">
+                        <a href="javascript:;" class="hvr-grow">
                             <span class="ion ion-person">&nbsp;&nbsp;</span>Profile</a>
                     </li>
                     <li>
-                        <a href="javascript:;">
-                            <span class="ion ion-settings">&nbsp;&nbsp;</span>Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="javascript:;">
+                        <a href="javascript:;" class="hvr-grow">
                             <span class="ion ion-lock-combination">&nbsp;&nbsp;</span>Lock Screen</a>
                     </li>
                     <li>
-                        <a href="javascript:;">
+                        <a href="javascript:;" class="hvr-grow">
                             <span class="ion ion-power">&nbsp;&nbsp;</span>Logout</a>
                     </li>
                 </ul>
@@ -413,8 +409,11 @@
     <script src="{% static 'scripts/plugins/bootstrap-rating.min.js' %}"></script>
     <script src="{% static 'scripts/plugins/waves.min.js' %}"></script>
     <script src="{% static 'scripts/plugins/summernote.min.js' %}"></script>
+    <script src="{% static 'scripts/plugins/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'scripts/app.js' %}"></script>
     <script src="{% static 'scripts/inbox.init.js' %}"></script>
+    <script src="{% static 'scripts/tables.init.js' %}"></script>
+    <script src="{% static 'scripts/views.js' %}"></script>
 
 </body>
 

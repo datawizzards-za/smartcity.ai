@@ -3,7 +3,7 @@
 <aside class="nav-wrap" id="site-nav" data-perfect-scrollbar>
     <div class="nav-head">
         <!-- site logo -->
-        <a href="index.html" class="site-logo text-uppercase">
+        <a href="{% url 'task-man' %}" class="site-logo text-uppercase">
             <span class="text">smartcity.ai</span>
         </a>
     </div>
@@ -21,8 +21,8 @@
 
         <!-- navigation -->
         <ul class="list-unstyled clearfix nav-list mb15">
-            <li class="{% if 'vacancies' not in request.path %} active {% endif %}">
-                <a href="{% url 'task-man' %}">
+            <li class="{% if 'task-man' in request.path %} active {% endif %}">
+                <a href="{% url 'task-man' %}" class="hvr-grow">
                     <i class="ion ion-email"></i>
                     <span class="text">tasks</span>
                 </a>
@@ -30,9 +30,17 @@
         </ul>
         <ul class="list-unstyled clearfix nav-list mb15">
             <li class="{% if 'vacancies' in request.path %} active {% endif %}">
-                <a href="{% url 'vacancies' %}">
+                <a href="{% url 'vacancies' %}" class="hvr-grow">
                     <i class="ion ion-android-open"></i>
                     <span class="text">vacancies</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="list-unstyled clearfix nav-list mb15">
+            <li class="{% if 'profile' in request.path %} active {% endif %}">
+                <a href="#" class="hvr-grow">
+                    <i class="ion ion-android-open"></i>
+                    <span class="text">profile</span>
                 </a>
             </li>
         </ul>
