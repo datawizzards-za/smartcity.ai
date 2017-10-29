@@ -8,8 +8,8 @@ from django.views import View
 
 
 class EmployeeInbox(View):
-    template_name = 'app/employee.inbox.html'
+    template_name = 'employee.inbox.html'
 
     def get(self, request):
-        context = {''}
-        return render(request, self.template_name, context)
+        #context = {''}
+        return render(request, self.template_name)
