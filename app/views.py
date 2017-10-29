@@ -6,8 +6,10 @@ from django.views import View
 
 
 # Create your views here.
-class Home(View):
-    template_name = 'app/index.html'
+
+
+class EmployeeInbox(View):
+    template_name = 'employee.inbox.html'
 
     def get(self, request):
         context = {'hello': 'hello there'}
@@ -16,3 +18,5 @@ class Home(View):
 class Schedular(View):
     def get(self, requests):
         return
+        #context = {''}
+        return render(request, self.template_name)
