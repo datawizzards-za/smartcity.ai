@@ -29,3 +29,17 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
+
+class FaultsCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Faults
+        fields = ['uuid', 'name', 'file_url', 'created_at', 'modified_at']
+
+    def create(self, validated_data):
+        uuid = validated_data.get('uuid')
+        name = validated_data.get('name')
+        file_url = validated_data.get('file_url')
+
+        dataset = None
+
+        return dataset
