@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Employee(models.Model):
-    emp_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=150)
     specialization = models.CharField(max_length=50)
     job_desc = models.TextField(max_length=1000)
