@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SmartCityAI</string>
+
+    <string name="quotedesc">Welcome! Where should we deliver to?</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_new_faults">New Faults</string>
+    <string name="title_in_progress">In Progress</string>
+    <string name="title_pending">Pending</string>
+    <string name="title_recommended_vacancies">Recommended</string>
+    <string name="title_vacancies">All</string>
+
+    <string-array name="faults">
+        <item>Sewage</item>
+        <item>Traffic Lights</item>
+        <item>Street Lights</item>
+        <item>Main Wholes</item>
+        <item>Potholes</item>
+    </string-array>
+</resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.itechhub.datawizards.smartcityai.activities.ReportFault">
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/spFaultName"/>
+    <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/etFaultName"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginLeft="24dp"-->
+            <!--android:layout_marginRight="24dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:ems="10"-->
+            <!--android:gravity="center"-->
+            <!--android:hint="Fault Name"-->
+            <!--android:inputType="textAutoCorrect" />-->
+    <!--</android.support.design.widget.TextInputLayout>-->
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Description"
+            android:inputType="textAutoCorrect" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/etLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="8dp"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:text="Location"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnLocation"
+        style="@style/proceedButtonStyle"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="Get Location" />
+    <Button
+        android:id="@+id/btnSubmitFault"
+        style="@style/proceedButtonStyle"
+        android:visibility="gone"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="Submit Fault" />
+
+</LinearLayout>
