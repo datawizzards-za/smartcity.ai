@@ -1,6 +1,6 @@
 {% extends "app.layout.html" %} {% block main_content %}
 <!-- content-here -->
-<div class="content-container" id="content">
+<div class="content-container animated rotateInDownLeft" id="content">
 	<!-- material page -->
 	<div class="page page-email">
 
@@ -12,7 +12,7 @@
 						<!-- compose mail btn -->
 						<form class="form-horizontal" action="javascript:;">
 							<div class="input-group mb30">
-								<input class="form-control" type="text" placeholder="Search mail...">
+								<input class="form-control" type="text" placeholder="search task">
 								<div class="input-group-btn">
 									<button type="submit" class="btn btn-default ion ion-search"></button>
 								</div>
@@ -22,27 +22,23 @@
 						<ul class="list-unstyled navigation mb15">
 							<li class="active">
 								<a href="javascript:;">
-									<span class="ion ion-filing"></span>Inbox (12)</a>
+									<span class="ion ion-filing"></span>new (12)</a>
 							</li>
 							<li>
 								<a href="javascript:;">
-									<span class="ion ion-paper-airplane"></span>Sent</a>
+									<span class="ion ion-document"></span>pending</a>
 							</li>
 							<li>
 								<a href="javascript:;">
-									<span class="ion ion-magnet"></span>Spam</a>
+									<span class="ion ion-paper-airplane"></span>in Progress</a>
 							</li>
 							<li>
 								<a href="javascript:;">
-									<span class="ion ion-document"></span>Drafts (2)</a>
+									<span class="ion ion-magnet"></span>closed</a>
 							</li>
 							<li>
 								<a href="javascript:;">
-									<span class="ion ion-chatbubble"></span>Chat</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									<span class="ion ion-trash-a"></span>Trash</a>
+									<span class="ion ion-trash-a"></span>rejected</a>
 							</li>
 						</ul>
 
@@ -79,13 +75,13 @@
 					<div class="email-content">
 						<!-- email summary lists -->
 						<ul class="email-lists list-unstyled clearfix mb30">
-							<li class="read">
+							<li class="active">
 								<a href="javascript:;">
 									<div class="group clearfix small">
-										<span class="sender-name left text-bold">Jonathan Doe</span>
+										<span class="sender-name left text-bold">boksburg</span>
 										<span class="email-date right xsmall mt1 text-pink">3 mins ago</span>
 									</div>
-									<p class="subject">Some nice subject here.</p>
+									<p class="subject">a broken robot </p>
 									<p class="summary small text-muted">Nor again is there anyone who loves or pursues or desires to obtain pain of itself...</p>
 
 									<div class="group clearfix">
@@ -94,7 +90,7 @@
 									</div>
 								</a>
 							</li>
-							<li class="active">
+							<li class="read">
 								<a href="javascript:;">
 									<div class="group clearfix small">
 										<span class="sender-name left text-bold">Organizer.com</span>
@@ -165,9 +161,9 @@
 
 							<div class="group clearfix head mb15">
 								<div class="left">
-									<h3 class="text-light mt5">Meetup at C.P., New Delhi</h3>
+									<h3 class="text-light mt5">a broken robot</h3>
 									<p>
-										<strong>Organizer.com</strong>
+										<strong>bokburg</strong>
 									</p>
 								</div>
 								<div class="right">
@@ -176,7 +172,7 @@
 										<button class="btn btn-default ion ion-arrow-left-c" type="button"></button>
 										<button class="btn btn-default fa ion-arrow-right-c" type="button"></button>
 									</div>
-									<div class="date small text-pink text-bold">12th Feb</div>
+									<div class="date small text-pink text-bold">Today, {% now 'd M Y' %}</div>
 								</div>
 							</div>
 
