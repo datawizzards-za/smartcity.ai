@@ -2,13 +2,6 @@
 <!-- content-here -->
 <div class="content-container animated rotateInDownLeft" id="content">
 	<div class="page page-ui-tabs">
-
-		<ol class="breadcrumb breadcrumb-small">
-			<li>home</li>
-			<li class="active">
-				vacancies
-			</li>
-		</ol>
 		<div class="page-wrap">
 			<!-- row -->
 			<div class="row">
@@ -23,51 +16,174 @@
 							<li>
 								<a href="#tab-right-about" data-toggle="tab">search</a>
 							</li>
-							<li>
-								<a href="#tab-right-portfolio" data-toggle="tab">all</a>
-							</li>
 						</ul>
 						<div class="tab-content">
-							<div class="tab-pane active" id="tab-right-home">
-								<div class="clearfix">
-									<p>HTML version of tab using bootstrap framework</p>
-									<p>
-										Bestiarum vero nullum iudicium puto. Tenent mordicus. Nam ista vestra: Si gravis, brevis; Quamquam tu hanc copiosiorem etiam
-										soles dicere. Isto modo, ne si avia
-										<strong>quidem eius</strong> nata non esset.
-									</p>
-									<button type="button" class="btn btn-xs btn-gplus ion ion-social-googleplus icon"></button>
-									<button type="button" class="btn btn-xs btn-github ion ion-social-github icon"></button>
-									<button type="button" class="btn btn-xs btn-dribbble ion ion-social-dribbble icon"></button>
-									<button type="button" class="btn btn-xs btn-youtube ion ion-social-youtube icon"></button>
+							<div class="tab-pane active animated fadeInRight" id="tab-right-home">
+								<div class="row clearfix">
+
+									<!-- List Groups -->
+									<div class="col-sm-12">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+											<div class="panel-body">
+												<!-- inner row -->
+												<div class="row">
+													<!-- #end col -->
+
+													<div class="col-md-5 col-sm-12">
+														<p class="small text-muted text-uppercase text-bold mb15">
+															For you...
+														</p>
+														<div class="list-group">
+															{% for i in '12345' %}
+															<a href="javascript:;" class="list-group-item hvr-grow">
+																Electrician, Closing on {{i}} Dec 2017
+															</a>
+															{% endfor %}
+														</div>
+													</div>
+													<!-- #end col -->
+
+													<div class="col-md-7 col-sm-12">
+														<p class="small text-muted text-uppercase text-bold mb15">Details...</p>
+														<div class="list-group">
+															<a href="javascript:;" class="list-group-item list-group-item-success">
+																<h4 class="list-group-item-heading">Department, Municipality</h4>
+																<p class="list-group-item-text">
+																	Electrical Engineer, Job Ref#2017001EE
+																	<br />
+																	<br />
+																	<br />
+																	<br />
+																	<br />
+																	<br />
+																	<br />
+																	<br />
+																	<br />
+																	<br />
+																	<br />
+																	<br />
+																	<br /> Job Description
+
+																</p>
+															</a>
+														</div>
+													</div>
+													<!-- #end col -->
+
+
+												</div>
+												<!-- #end inner row -->
+											</div>
+											<!-- #end panel-body -->
+										</div>
+										<!-- #end panel -->
+									</div>
+									<!-- #end col -->
 								</div>
 							</div>
-							<div class="tab-pane" id="tab-right-about">
-								<h5 class="mt0">Hye, I'm John Doe</h5>
-								<div class="clearfix">
-									<p>Cui Tubuli nomen odio non est? Eam stabilem appellas. Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum.
-									</p>
-									<button class="btn btn-pink btn-sm">See My Portfolio</button>
+							<div class="tab-pane animated fadeInRight" id="tab-right-about">
+								<div class="row clearfix">
+
+									<!-- Data Table -->
+									<div class="col-md-12">
+										<div class="panel panel-lined table-responsive panel-hovered mb20 data-table" style="padding-bottom: 20px">
+											<div class="panel-body">
+												<div class="small text-bold left mt5">
+													Show&nbsp;
+													<select class="lengthSelect">
+														<option value="5">5</option>
+														<option value="10" selected>10</option>
+														<option value="20">20</option>
+														<option value="50">50</option>
+													</select>
+													&nbsp;entries
+												</div>
+
+												<form class="form-horizontal right col-lg-4" action="javascript:;">
+													<input type="text" class="form-control input-sm searchInput has-success" placeholder="Enter keyword">
+												</form>
+											</div>
+											<!-- data table -->
+											<div class="col-md-7 col-sm-12">
+												<table class="table table-hover table-striped">
+													<thead>
+														<tr>
+															<th>
+																Job Title
+																<div class="th">
+																	<i class="fa fa-caret-up icon-up"></i>
+																	<i class="fa fa-caret-down icon-down"></i>
+																</div>
+															</th>
+															<th>
+																Employer
+																<div class="th">
+																	<i class="fa fa-caret-up icon-up"></i>
+																	<i class="fa fa-caret-down icon-down"></i>
+																</div>
+															</th>
+															<th>
+																Closing Date
+																<div class="th">
+																	<i class="fa fa-caret-up icon-up"></i>
+																	<i class="fa fa-caret-down icon-down"></i>
+																</div>
+															</th>
+														</tr>
+													</thead>
+													<tbody>
+														<!-- data initialize via script, can also be load via ajax -->
+													</tbody>
+												</table>
+											</div>
+											<!-- #end data table -->
+
+
+											<div class="col-md-5 col-sm-12">
+												<p class="small text-muted text-uppercase text-bold mb15">Details...</p>
+												<div class="list-group">
+													<a href="javascript:;" class="list-group-item list-group-item-success">
+														<h4 class="list-group-item-heading">Department, Municipality</h4>
+														<p class="list-group-item-text">
+															Electrical Engineer, Job Ref#2017001EE
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br />
+															<br /> Job Description
+
+														</p>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="tab-pane" id="tab-right-portfolio">
-								<p>Philosophi autem in suis lectulis plerumque moriuntur. Non risu potius quam oratione eiciendum? Quid turpius quam
-									sapientis vitam ex insipientium sermone pendere? O magnam vim ingenii causamque iustam, cur nova existeret disciplina!
-									Perge porro.</p>
-								<button class="btn btn-pink btn-sm">Go to Tab 2</button>
 							</div>
 						</div>
+						<!-- tab style -->
 					</div>
-					<!-- tab style -->
+					<!-- #end tabs-right -->
 				</div>
-				<!-- #end tabs-right -->
-			</div>
-			<!-- #end row -->
+				<!-- #end row -->
 
+			</div>
+			<!-- #end page-wrap -->
 		</div>
-		<!-- #end page-wrap -->
+		<!-- #end page -->
 	</div>
-	<!-- #end page -->
-</div>
-<!-- #end content-container -->
-{% endblock main_content %}
+	<!-- #end content-container -->
+	{% endblock main_content %}
