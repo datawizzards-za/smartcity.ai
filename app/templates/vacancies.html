@@ -1,0 +1,73 @@
+{% extends "app.layout.html" %} {% block main_content %}
+<!-- content-here -->
+<div class="content-container animated rotateInDownLeft" id="content">
+	<div class="page page-ui-tabs">
+
+		<ol class="breadcrumb breadcrumb-small">
+			<li>home</li>
+			<li class="active">
+				vacancies
+			</li>
+		</ol>
+		<div class="page-wrap">
+			<!-- row -->
+			<div class="row">
+				<!-- tabs-right -->
+				<div class="col-md-12 mb30">
+					<!-- tab style -->
+					<div class="clearfix tabs-right tabs-fill">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="#tab-right-home" data-toggle="tab">recommended</a>
+							</li>
+							<li>
+								<a href="#tab-right-about" data-toggle="tab">search</a>
+							</li>
+							<li>
+								<a href="#tab-right-portfolio" data-toggle="tab">all</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab-right-home">
+								<div class="clearfix">
+									<p>HTML version of tab using bootstrap framework</p>
+									<p>
+										Bestiarum vero nullum iudicium puto. Tenent mordicus. Nam ista vestra: Si gravis, brevis; Quamquam tu hanc copiosiorem etiam
+										soles dicere. Isto modo, ne si avia
+										<strong>quidem eius</strong> nata non esset.
+									</p>
+									<button type="button" class="btn btn-xs btn-gplus ion ion-social-googleplus icon"></button>
+									<button type="button" class="btn btn-xs btn-github ion ion-social-github icon"></button>
+									<button type="button" class="btn btn-xs btn-dribbble ion ion-social-dribbble icon"></button>
+									<button type="button" class="btn btn-xs btn-youtube ion ion-social-youtube icon"></button>
+								</div>
+							</div>
+							<div class="tab-pane" id="tab-right-about">
+								<h5 class="mt0">Hye, I'm John Doe</h5>
+								<div class="clearfix">
+									<p>Cui Tubuli nomen odio non est? Eam stabilem appellas. Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum.
+									</p>
+									<button class="btn btn-pink btn-sm">See My Portfolio</button>
+								</div>
+							</div>
+							<div class="tab-pane" id="tab-right-portfolio">
+								<p>Philosophi autem in suis lectulis plerumque moriuntur. Non risu potius quam oratione eiciendum? Quid turpius quam
+									sapientis vitam ex insipientium sermone pendere? O magnam vim ingenii causamque iustam, cur nova existeret disciplina!
+									Perge porro.</p>
+								<button class="btn btn-pink btn-sm">Go to Tab 2</button>
+							</div>
+						</div>
+					</div>
+					<!-- tab style -->
+				</div>
+				<!-- #end tabs-right -->
+			</div>
+			<!-- #end row -->
+
+		</div>
+		<!-- #end page-wrap -->
+	</div>
+	<!-- #end page -->
+</div>
+<!-- #end content-container -->
+{% endblock main_content %}
