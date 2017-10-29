@@ -27,14 +27,6 @@ class Address(models.Model):
     province = models.CharField(max_length=15)
 
 
-class Address(models.Model):
-    line_one = models.CharField(max_length=100)
-    line_two = models.CharField(max_length=100)
-    gps = models.CharField(max_length=60)
-    city = models.CharField(max_length=15)
-    province = models.CharField(max_length=15)
-
-
 class Faults(models.Model):
     name = models.CharField(max_length=120)
     description = models.TextField(max_length=1000)
