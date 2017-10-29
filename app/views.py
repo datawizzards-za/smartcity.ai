@@ -12,3 +12,7 @@ class Home(View):
     def get(self, request):
         context = {'hello': 'hello there'}
         return render(request, self.template_name, context)
+
+class Schedular(View):
+    def get(self, requests):
+        return
