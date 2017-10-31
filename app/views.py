@@ -16,8 +16,8 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 
-class TaskMan(View):
-    template_name = 'taskman.html'
+class CaseMan(View):
+    template_name = 'caseman.html'
 
     def get(self, request):
         #context = {''}
@@ -31,13 +31,14 @@ class Vacancies(View):
         context = {'hello': 'hello there'}
         return render(request, self.template_name, context)
 
+
 class Schedular(View):
     def get(self, request, *args, **kwargs):
         models.Faults.objects.create(
-        name=kwargs['name'],
-        description = kwargs['desc'],
-        reporter = kwargs['user'],
-        location = kwargs['loc'],
+            name=kwargs['name'],
+            description=kwargs['desc'],
+            reporter=kwargs['user'],
+            location=kwargs['loc'],
         )
 
         #context = {''}
@@ -58,25 +59,25 @@ class LoadEmployeesData(View):
 
     def get(self, request):
         employees_data = pickle.load(open('data/employee_data.pkl'))
-        #print employees_data
+        # print employees_data
         #user = User.objects.create_user
         string = 'EMM'
         number = 17000
         for emp in employees_data:
             names = emp['name'].split(' ')
-            first_name, last_name = names[0], names[len(names)-1]
+            first_name, last_name = names[0], names[len(names) - 1]
             password = first_name + "." + last_name
             email = password + "@gmail.com"
             emp_number = string + str(number)
             number += 1
-            
+
             init_numbers = ['060', '061', '062', '063', '064', '065', '071',
-                           '072' '073', '074', '081', '082', '083', '084',
-                           '086']
-            ext_index = np.random.randint(len(init_numbers)-1)
+                            '072' '073', '074', '081', '082', '083', '084',
+                            '086']
+            ext_index = np.random.randint(len(init_numbers) - 1)
             phone_number = init_numbers[ext_index] + \
-                          str(np.random.randint(1000000, 9999999))
-            
+                str(np.random.randint(1000000, 9999999))
+
             user = User.objects.create_user(
                 first_name=first_name,
                 last_name=last_name,

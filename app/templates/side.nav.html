@@ -3,7 +3,7 @@
 <aside class="nav-wrap" id="site-nav" data-perfect-scrollbar>
     <div class="nav-head">
         <!-- site logo -->
-        <a href="{% url 'task-man' %}" class="site-logo text-uppercase">
+        <a href="{% url 'case-man' %}" class="site-logo text-uppercase">
             <span class="text">smartcity.ai</span>
         </a>
     </div>
@@ -21,10 +21,10 @@
 
         <!-- navigation -->
         <ul class="list-unstyled clearfix nav-list mb15">
-            <li class="{% if 'task-man' in request.path %} active {% endif %}">
-                <a href="{% url 'task-man' %}" class="hvr-grow">
+            <li class="{% if 'case-man' in request.path %} active {% endif %}">
+                <a href="{% url 'case-man' %}" class="hvr-grow">
                     <i class="ion ion-email"></i>
-                    <span class="text">tasks</span>
+                    <span class="text">Case Manager</span>
                 </a>
             </li>
         </ul>
