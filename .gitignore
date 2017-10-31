@@ -8,8 +8,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-.idea/
-migrations/*__initial.py
 env/
 build/
 develop-eggs/
@@ -101,3 +99,5 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+db.sqlite3
