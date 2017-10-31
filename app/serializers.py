@@ -2,6 +2,7 @@ from rest_framework import serializers
 from app import models
 from django.contrib.auth.models import User
 
+
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Address
@@ -20,15 +21,17 @@ class FaultsSerializer(serializers.ModelSerializer):
         fields = ['name', 'description', 'reporter', 'location']
 
 
-class TaskManagerSerializer(serializers.ModelSerializer):
+class CaseManagerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.TaskManager
+        model = models.CaseManager
         fields = ['fault_id', 'responder', 'status', 'reason']
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
+
 
 class FaultsCreateSerializer(serializers.ModelSerializer):
     class Meta:
