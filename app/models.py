@@ -34,20 +34,28 @@ class Faults(models.Model):
     reporter = models.ForeignKey(Citizen, on_delete=models.CASCADE)
     location = models.ForeignKey(Address, on_delete=models.CASCADE)
     data_submitted = models.DateTimeField(auto_now_add=True)
+    verification_score = models.IntegerField()
 
 
-class TaskManager(models.Model):
-    fault_id = models.ForeignKey(Faults, on_delete=models.CASCADE)
+class CaseManager(models.Model):
+    fault = models.ForeignKey(Faults, on_delete=models.CASCADE)
     responder = models.ForeignKey(Employee, on_delete=models.CASCADE)
     status = models.CharField(max_length=10)
     reason = models.CharField(max_length=150)
 
 
-class Recommended(models.Model):
-    emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
-
-
 class Schedular(models.Model):
     fault_id = models.ForeignKey(Faults, on_delete=models.CASCADE)
     status = models.CharField(max_length=20)
-    Recommended = models.ForeignKey(Recommended, on_delete=models.CASCADE)
+    recommended = models.ForeignKey(Employee, on_delete=models.CASCADE)
+
+
+class TrustedReporters(models.Model):
+    reporter = models.ForeignKey(Citizen, on_delete=models.CASCADE)
+    location = models.ForeignKey(Address, on_delete=models.CASCADE)
+    trust_score = models.IntegerField()
+
+
+class ReporterRewards(models.Model):
+    fault = models.ForeignKey(Faults, on_delete=models.CASCADE)
+    reporter = models.ForeignKey(Citizen, on_delete=models.CASCADE)

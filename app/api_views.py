@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 from django.contrib.auth.models import User
 
+
 class GetClientAddress(generics.ListCreateAPIView):
     serializer_class = serializers.AddressSerializer
 
@@ -40,12 +41,12 @@ class GetFaults(generics.ListAPIView):
         return models.Faults.objects.filter(reporter=reporter)
 
 
-class GetTaskManager(generics.ListAPIView):
-    serializer_class = serializers.TaskManagerSerializer
+class GetCaseManager(generics.ListAPIView):
+    serializer_class = serializers.CaseManagerSerializer
 
     def get_queryset(self):
         responder = self.kwargs['responder']
-        return models.TaskManager.objects.filter(responder=responder)
+        return models.CaseManager.objects.filter(responder=responder)
 
 
 class GetEmployees(generics.ListAPIView):
