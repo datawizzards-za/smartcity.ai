@@ -29,6 +29,22 @@
             </li>
         </ul>
         <ul class="list-unstyled clearfix nav-list mb15">
+            <li class="{% if 'visuals' in request.path %} active {% endif %}">
+                <a href="{% url 'visuals' %}" class="hvr-grow">
+                    <i class="ion ion-android-open"></i>
+                    <span class="text">visuals</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="list-unstyled clearfix nav-list mb15">
+            <li class="{% if 'rewards' in request.path %} active {% endif %}">
+                <a href="{% url 'rewards' %}" class="hvr-grow">
+                    <i class="ion ion-android-open"></i>
+                    <span class="text">rewards</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="list-unstyled clearfix nav-list mb15">
             <li class="{% if 'vacancies' in request.path %} active {% endif %}">
                 <a href="{% url 'vacancies' %}" class="hvr-grow">
                     <i class="ion ion-android-open"></i>
@@ -38,7 +54,7 @@
         </ul>
         <ul class="list-unstyled clearfix nav-list mb15">
             <li class="{% if 'profile' in request.path %} active {% endif %}">
-                <a href="#" class="hvr-grow">
+                <a href="{% url 'profile' %}" class="hvr-grow">
                     <i class="ion ion-android-open"></i>
                     <span class="text">profile</span>
                 </a>
