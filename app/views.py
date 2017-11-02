@@ -32,6 +32,38 @@ class Vacancies(View):
         return render(request, self.template_name, context)
 
 
+class Visuals(View):
+    template_name = 'visuals.html'
+
+    def get(self, request):
+        context = {'hello': 'hello there'}
+        return render(request, self.template_name, context)
+
+
+class Notifs(View):
+    template_name = 'notifs.html'
+
+    def get(self, request):
+        context = {'hello': 'hello there'}
+        return render(request, self.template_name, context)
+
+
+class Profile(View):
+    template_name = 'profile.html'
+
+    def get(self, request):
+        context = {'hello': 'hello there'}
+        return render(request, self.template_name, context)
+
+
+class Rewards(View):
+    template_name = 'rewards.html'
+
+    def get(self, request):
+        context = {'hello': 'hello there'}
+        return render(request, self.template_name, context)
+
+
 class Schedular(View):
     def get(self, request, *args, **kwargs):
         models.Faults.objects.create(
@@ -47,15 +79,6 @@ class Schedular(View):
 
 class LoadEmployeesData(View):
     template_name = 'load_employees_data.html'
-
-    """
-    class Employee(models.Model):
-        user = models.OneToOneField(User, on_delete=models.CASCADE)
-        job_title = models.CharField(max_length=150)
-        specialization = models.CharField(max_length=50)
-        job_desc = models.TextField(max_length=1000)
-        cell = models.CharField(max_length=20)
-    """
 
     def get(self, request):
         employees_data = pickle.load(open('data/employee_data.pkl'))

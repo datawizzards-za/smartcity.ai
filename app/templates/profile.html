@@ -1,0 +1,105 @@
+{% extends "app.layout.html" %} {% block main_content %}
+<!-- content-here -->
+<div class="content-container animated rotateInDownLeft" id="content">
+
+	<!-- material page -->
+	<div class="page page-material">
+		<div class="page-wrap">
+			<div class="row">
+				<!-- input form -->
+				<div class="col-md-12">
+					<div class="panel panel-primary mb20 panel-hovered">
+						<div class="panel-body">
+							<div class="clearfix">
+								<div class="col-md-6">
+									<div class="md-input-container">
+										<input value="Developer" type="text" class="md-input">
+										<label>Title</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="md-input-container">
+										<input value="lorem@ipsum.com" type="email" class="md-input">
+										<label>Email</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12 clearfix">
+								<div class="md-input-container">
+									<input value="Google" type="text" class="md-input" disabled>
+									<label>Company (Disabled)</label>
+								</div>
+							</div>
+
+
+							<div class="clearfix">
+								<div class="col-md-6">
+									<div class="md-input-container md-float-label">
+										<input type="text" class="md-input">
+										<label>First Name</label>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="md-input-container md-float-label">
+										<input type="text" class="md-input">
+										<label>Last Name</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12 clearfix">
+								<div class="md-input-container">
+									<input type="text" value="1600 Amphitheatre Pkwy" class="md-input">
+									<label>Address</label>
+								</div>
+							</div>
+
+							<div class="col-md-12 clearfix">
+								<div class="md-input-container">
+									<input type="text" placeholder="Address 2" class="md-input">
+								</div>
+							</div>
+
+
+							<div class="clearfix">
+								<div class="col-md-4">
+									<div class="md-input-container">
+										<input type="text" placeholder="Mountain View" class="md-input">
+										<label>City</label>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="md-input-container">
+										<input type="text" placeholder="CA" class="md-input">
+										<label>State</label>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="md-input-container">
+										<input type="text" placeholder="12102" class="md-input">
+										<label>Postal Code</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<div class="md-input-container">
+									<textarea rows="5" class="md-input">Loves kittens, snowboarding, and can type at 130 WPM.</textarea>
+									<label>Biography</label>
+									<div class="md-char-counter">10/199</div>
+								</div>
+							</div>
+
+						</div>
+						<!-- #end panel-body -->
+					</div>
+				</div>
+			</div>
+			<!-- #end row -->
+		</div>
+		<!-- #end page-wrap -->
+	</div>
+</div>
+{% endblock main_content %}
