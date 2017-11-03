@@ -1,0 +1,59 @@
+{% extends "app.layout.html" %} {% block main_content %}
+<!-- content-here -->
+<div class="content-container animated rotateInDownLeft" id="content">
+	<div class="page page-ui-tabs">
+		<div class="page-wrap">
+			<!-- row -->
+			<div class="row">
+				<!-- tabs-right -->
+				<div class="col-md-12 mb30">
+					<!-- tab style -->
+					<div class="clearfix tabs-right tabs-fill">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="#tab-reporters" data-toggle="tab">reporters</a>
+							</li>
+							<li>
+								<a href="#tab-employees" data-toggle="tab">employees</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active animated rotateInDownRight" id="tab-reporters">
+								<div class="row clearfix">
+									<!-- List Groups -->
+									<div class="col-sm-12">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+											<div class="panel-body">
+											</div>
+											<!-- #end panel-body -->
+										</div>
+										<!-- #end panel -->
+									</div>
+									<!-- #end col -->
+								</div>
+							</div>
+							<div class="tab-pane animated rotateInDownRight" id="tab-employees">
+								<div class="row clearfix">
+									<!-- Data Table -->
+									<div class="col-md-12">
+										<div class="panel panel-lined table-responsive panel-hovered mb20 data-table" style="padding-bottom: 20px">
+											<div class="panel-body">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- tab style -->
+					</div>
+					<!-- #end tabs-right -->
+				</div>
+				<!-- #end row -->
+
+			</div>
+			<!-- #end page-wrap -->
+		</div>
+		<!-- #end page -->
+	</div>
+	<!-- #end content-container -->
+	{% endblock main_content %}
