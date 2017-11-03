@@ -33,7 +33,8 @@ class Faults(models.Model):
     description = models.TextField(max_length=1000, null=True)
     reporter = models.ForeignKey(Citizen, on_delete=models.CASCADE)
     location = models.ForeignKey(Address, on_delete=models.CASCADE)
-    data_submitted = models.DateTimeField(auto_now_add=True)
+    date_submitted = models.DateTimeField()
+    date_created = models.DateField()
     verification_score = models.IntegerField()
 
 

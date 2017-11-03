@@ -48,22 +48,25 @@ class Schedular(View):
 class LoadEmployeesData(View):
     template_name = 'load_employees_data.html'
 
-    """
-    class Employee(models.Model):
-        user = models.OneToOneField(User, on_delete=models.CASCADE)
-        job_title = models.CharField(max_length=150)
-        specialization = models.CharField(max_length=50)
-        job_desc = models.TextField(max_length=1000)
-        cell = models.CharField(max_length=20)
-    """
-
     def get(self, request):
         employees_data = pickle.load(open('data/employee_data.pkl'))
-        # print employees_data
-        #user = User.objects.create_user
+        faults = json.load(open('data/faults.json'))
         string = 'EMM'
         number = 17000
-        for emp in employees_data:
+
+        print "FAULT: ", faults[0]
+        print "Length: ", len(faults)
+
+        p = 0.1
+        percent = int(len(employees_data) * p)
+
+        assert 0
+        init_numbers = ['060', '061', '062', '063', '064', '065', '071',
+                        '072' '073', '074', '081', '082', '083', '084',
+                        '086']
+
+        for i in range(percent):
+            emp = employees_data[i]
             names = emp['name'].split(' ')
             first_name, last_name = names[0], names[len(names) - 1]
             password = first_name + "." + last_name
@@ -71,9 +74,6 @@ class LoadEmployeesData(View):
             emp_number = string + str(number)
             number += 1
 
-            init_numbers = ['060', '061', '062', '063', '064', '065', '071',
-                            '072' '073', '074', '081', '082', '083', '084',
-                            '086']
             ext_index = np.random.randint(len(init_numbers) - 1)
             phone_number = init_numbers[ext_index] + \
                 str(np.random.randint(1000000, 9999999))
@@ -93,6 +93,33 @@ class LoadEmployeesData(View):
                 job_desc=emp['description'],
                 cell=phone_number,
             )
+
+        for i in range(percent, len(employees_data)):
+            emp = employees_data[i]
+            names = emp['name'].split(' ')
+            first_name, last_name = names[0], names[len(names) - 1]
+            password = first_name + "." + last_name
+            email = password + "@gmail.com"
+            user = User.objects.create_user(
+                first_name=first_name,
+                last_name=last_name,
+                username=emp_number,
+                email=email,
+                password=password
+            )
+
+            
+
+        """
+        class Faults(models.Model):
+            defect = models.CharField(max_length=120)
+            category = models.CharField(max_length=120)
+            description = models.TextField(max_length=1000, null=True)
+            reporter = models.ForeignKey(Citizen, on_delete=models.CASCADE)
+            location = models.ForeignKey(Address, on_delete=models.CASCADE)
+            data_submitted = models.DateTimeField(auto_now_add=True)
+            verification_score = models.IntegerField()
+        """
 
         return render(request, self.template_name)
 
