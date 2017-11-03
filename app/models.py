@@ -27,26 +27,27 @@ class Address(models.Model):
     province = models.CharField(max_length=15)
 
 
-class Faults(models.Model):
+class Fault(models.Model):
     defect = models.CharField(max_length=120)
     category = models.CharField(max_length=120)
     description = models.TextField(max_length=1000, null=True)
-    reporter = models.ForeignKey(Citizen, on_delete=models.CASCADE)
-    location = models.ForeignKey(Address, on_delete=models.CASCADE)
+    reporters = models.ManyToManyField(Citizen)
+    #location = models.ForeignKey(Address, on_delete=models.CASCADE)
+    location = models.CharField(max_length=300) 
     date_submitted = models.DateTimeField()
     date_created = models.DateField()
-    verification_score = models.IntegerField()
+    #verification_score = models.IntegerField()
 
 
 class CaseManager(models.Model):
-    fault = models.ForeignKey(Faults, on_delete=models.CASCADE)
+    fault = models.ForeignKey(Fault, on_delete=models.CASCADE)
     responder = models.ForeignKey(Employee, on_delete=models.CASCADE)
     status = models.CharField(max_length=10)
     reason = models.CharField(max_length=150)
 
 
 class Schedular(models.Model):
-    fault_id = models.ForeignKey(Faults, on_delete=models.CASCADE)
+    fault_id = models.ForeignKey(Fault, on_delete=models.CASCADE)
     status = models.CharField(max_length=20)
     recommended = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
@@ -58,5 +59,5 @@ class TrustedReporters(models.Model):
 
 
 class ReporterRewards(models.Model):
-    fault = models.ForeignKey(Faults, on_delete=models.CASCADE)
+    fault = models.ForeignKey(Fault, on_delete=models.CASCADE)
     reporter = models.ForeignKey(Citizen, on_delete=models.CASCADE)

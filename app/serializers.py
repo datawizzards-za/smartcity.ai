@@ -17,7 +17,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
 class FaultsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Faults
+        model = models.Fault
         fields = ['name', 'description', 'reporter', 'location']
 
 
@@ -35,7 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class FaultsCreateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Faults
+        model = models.Fault
         fields = ['uuid', 'name', 'file_url', 'created_at', 'modified_at']
 
     def create(self, validated_data):
