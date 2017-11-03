@@ -81,11 +81,13 @@ class LoadEmployeesData(View):
     template_name = 'load_employees_data.html'
 
     def get(self, request):
+        print("\nBegin: loading pickel file...")
         employees_data = pickle.load(open('data/employee_data.pkl'))
         # print employees_data
         #user = User.objects.create_user
         string = 'EMM'
         number = 17000
+        print("writing employee records to db...")
         for emp in employees_data:
             names = emp['name'].split(' ')
             first_name, last_name = names[0], names[len(names) - 1]
@@ -116,6 +118,7 @@ class LoadEmployeesData(View):
                 job_desc=emp['description'],
                 cell=phone_number,
             )
+        print("DONE: complete.")
 
         return render(request, self.template_name)
 
