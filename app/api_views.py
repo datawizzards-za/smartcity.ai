@@ -5,32 +5,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import generics
 from django.contrib.auth.models import User
-
-
-class GetClientAddress(generics.ListCreateAPIView):
-    serializer_class = serializers.AddressSerializer
-
-    def get(self, *args, **kwargs):
-        """Retrieve result base on the clustering result id
-
-        Kwargs:
-            kwargs['pk'] (str): Clustering algorithm id.
-
-        """
-
-        pk = kwargs['pk']
-        algo_name = kwargs['algo']
-        queryset = None
-        serializer = None
-
-        queryset = self.get_queryset(pk, algo_name)
-        serializer = serializers.FaultsCreateSerializer(queryset, many=False)
-
-        return Response(serializer.data)
-
-    def get_queryset(self,  fault_id):
-        queryset = models.Faults.filter(name=fault_id)
-        return queryset
+from app import models
+from app import serializers
 
 
 class GetFaults(generics.ListAPIView):
@@ -39,6 +15,11 @@ class GetFaults(generics.ListAPIView):
     def get_queryset(self):
         reporter = self.kwargs['reporter']
         return models.Faults.objects.filter(reporter=reporter)
+
+
+class RegisterCitizen(generics.ListCreateAPIView):
+    queryset = models.User.objects.all()
+    serializer_class = serializers.UserSerializer
 
 
 class GetCaseManager(generics.ListAPIView):
@@ -62,3 +43,10 @@ class GetUser(generics.ListAPIView):
     def get_queryset(self):
         username = self.kwargs['username']
         return User.objects.filter(username=username)
+
+
+class GetClientAddress(generics.ListCreateAPIView):
+    serializer_class = serializers.AddressSerializer
+
+    def get_queryset(self):
+        return models.Address.objects.all()
