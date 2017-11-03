@@ -3,6 +3,7 @@ package com.itechhub.datawizards.smartcityai.activities;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
@@ -27,8 +28,19 @@ import com.itechhub.datawizards.smartcityai.models.Fault;
 import com.itechhub.datawizards.smartcityai.models.LocationUtil.LocationHelper;
 import com.itechhub.datawizards.smartcityai.models.User;
 
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -222,25 +234,62 @@ void addElements(){
         startActivity(intent);
         finish();
     }
-    public void postData() {
-        // Create a new HttpClient and Post Header
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://www.yoursite.com/script.php");
+    public class PostData extends AsyncTask<String,String,String>{
+        // This is the JSON body of the post
+        JSONObject postData;
 
-        try {
-            // Add your data
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("id", "12345"));
-            nameValuePairs.add(new BasicNameValuePair("stringdata", "Hi"));
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+        // This is a constructor that allows you to pass in the JSON body
+        public PostData(Map<String, String> postData) {
+            if (postData != null) {
+                this.postData = new JSONObject(postData);
 
-            // Execute HTTP Post Request
-            HttpResponse response = httpclient.execute(httppost);
+            }
+        }
+        // This is a function that we are overriding from AsyncTask. It takes Strings as parameters because that is what we defined for the parameters of our async task
+        @Override
+        protected String doInBackground(String... strings) {
+            URL url = null;
+            HttpURLConnection con = null;
+            try {
+               url = new URL("http://simplifypay.herokuapp.com//charge.php");
+                con = (HttpURLConnection) url.openConnection();
+                //add reuqest header
+                con.setRequestMethod("POST");
+                con.setRequestProperty("User-Agent", "Mozilla/5.0");
+                        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-        } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+                String urlParameters = "simplifyToken="+"token.getId()"+"&amount=1000";
+
+                // Send post request
+                con.setDoOutput(true);
+                DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+                wr.writeBytes(urlParameters);
+                wr.flush();
+                wr.close();
+
+                int responseCode = con.getResponseCode();
+                System.out.println("\nSending 'POST' request to URL : " + url);
+                System.out.println("Post parameters : " + urlParameters);
+                System.out.println("Response Code : " + responseCode);
+
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                //print result
+                System.out.println(response.toString());
+                //
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                con.disconnect();
+            }
+            return null;
         }
     }
 }
