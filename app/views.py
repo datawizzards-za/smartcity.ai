@@ -26,7 +26,8 @@ class CaseMan(View):
     def get(self, request):
         user = models.User.objects.get(username=self.request.user)
         mycases = models.CaseManager.objects.filter(responder_id=user.id)
-        new = mycases.filter(status='')
+        new = mycases.filter(status='open')
+        print(mycases)
         # pending =
         # closed =
         # context = {'mycases': mycases, 'new_cases': new, 'pending': pending, closed}
