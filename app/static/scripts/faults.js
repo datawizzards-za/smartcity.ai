@@ -1,6 +1,6 @@
 $(document).ready(function(){
     queue()
-        .defer(d3.json, "/app/get_all_faults/")
+        .defer(d3.json, "/app/api/get_all_faults/")
         .await(makeGraphs);
 
     function makeGraphs(error, recordsJson) {
@@ -8,15 +8,19 @@ $(document).ready(function(){
         //var records = recordsJson;
         var records = [];
         //"2014-12-24T00:00:00Z"
-        var dateFormat = d3.time.format("%Y-%m-%dT%H:%M:%SZ");
-
+        //var dateFormat = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
+        var dateFormat = d3.time.format.iso;
+        
         recordsJson.forEach(function(d) {
             var length = d['reporters'].length;
 
             for (var i = 0; i < length; i++) {
                 tmp = {}
+                //var date = d["date_submitted"].substring(0,9);
+                console.log(d["date_submitted"]);
                 tmp["date_submitted"] = dateFormat.parse(d["date_submitted"]);
                 tmp["date_created"] = new Date(d["date_created"]);
+                console.log(tmp["date_submitted"]);
                 tmp["date_submitted"].setMinutes(0);
                 tmp["date_submitted"].setSeconds(0);
                 tmp["category"] = d["category"];
