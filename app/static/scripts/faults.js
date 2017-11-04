@@ -116,8 +116,8 @@ $(document).ready(function(){
 
         reporterChart
             .data(function(group) { return group.top(3); })
-            .width(260)
-            .height(230)
+            .width(240)
+            .height(180)
             .dimension(reporterDim)
             .group(reporterGroup)
             .ordering(function(d) { return -d.value })
@@ -126,5 +126,36 @@ $(document).ready(function(){
             .xAxis().ticks(4);
 
         dc.renderAll();
+
+        // Reset plots
+        d3.selectAll('a#reset-all').on('click', function () {
+            dc.filterAll();
+            dc.redrawAll();
+        });
+
+        d3.selectAll('a#reset-submittedChart').on('click', function () {
+            submittedChart.filterAll();
+            dc.redrawAll();
+        });
+
+        d3.selectAll('a#reset-category').on('click', function () {
+            categoryChart.filterAll();
+            dc.redrawAll();
+        });
+
+        d3.selectAll('a#reset-location').on('click', function () {
+            locationChart.filterAll();
+            dc.redrawAll();
+        });
+
+        d3.selectAll('a#reset-defect').on('click', function () {
+            defectChart.filterAll();
+            dc.redrawAll();
+        });
+
+        d3.selectAll('a#reset-reporter').on('click', function () {
+            reporterChart.filterAll();
+            dc.redrawAll();
+        });
     }
 });
