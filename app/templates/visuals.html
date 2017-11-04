@@ -1,4 +1,6 @@
-{% extends "app.layout.html" %} {% block main_content %}
+{% extends "app.layout.html" %}
+{% load staticfiles %}
+{% block main_content %}
 <!-- content-here -->
 <div class="content-container animated rotateInDownLeft" id="content">
 	<div class="page page-ui-tabs">
@@ -27,13 +29,53 @@
 									<div class="col-sm-12">
 										<div class="panel panel-default panel-hovered panel-stacked mb30">
 											<div class="panel-body">
-
+                        <div id="submitted-chart"></div>
 											</div>
 										</div>
 										<!-- #end panel -->
 									</div>
 									<!-- #end col -->
 								</div>
+                <div class="row clearfix">
+									<!-- List Groups -->
+									<div class="col-sm-4">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+											<div class="panel-body">
+                        <div id="category-chart"></div>
+											</div>
+										</div>
+										<!-- #end panel -->
+									</div>
+									<!-- #end col -->
+									<div class="col-sm-3">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+											<div class="panel-body">
+                        <div id="location-chart"></div>
+											</div>
+										</div>
+										<!-- #end panel -->
+									</div>
+									<!-- #end col -->
+									<div class="col-sm-3">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+											<div class="panel-body">
+                        <div id="defect-chart"></div>
+											</div>
+										</div>
+										<!-- #end panel -->
+									</div>
+									<!-- #end col -->
+									<div class="col-sm-2">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+											<div class="panel-body">
+                        <div id="number-records-nd"></div>
+											</div>
+										</div>
+										<!-- #end panel -->
+									</div>
+									<!-- #end col -->
+								</div>
+
 							</div>
 							<div class="tab-pane animated rotateInDownRight" id="tab-reporters">
 								<div class="row clearfix">
@@ -74,3 +116,10 @@
 	</div>
 	<!-- #end content-container -->
 	{% endblock main_content %}
+  {% block extra_js %}
+  <script src="{% static 'scripts/crossfilter.js' %}"></script>
+  <script src="{% static 'scripts/d3.min.js' %}"></script>
+  <script src="{% static 'scripts/dc.js' %}"></script>
+  <script src="{% static 'scripts/queue.js' %}"></script>
+  <script src="{% static 'scripts/faults.js' %}"></script>
+  {% endblock %}

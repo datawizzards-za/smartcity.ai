@@ -1,0 +1,26 @@
+/** ================================================================ */
+
+#number-records-nd {
+    font-size: 55px;
+}
+
+#number-incidents-loc {
+    font-size: 55px;
+}
+
+.dc-chart g.row text {
+    fill: black;
+
+}
+
+.dc-chart g.pie text {
+    fill: black;
+
+}
+
+#heatmap-chart {
+    /*margin-left: 90px;*/
+}
+
+#category-chart svg { width: 500px; }
+#heatmap svg { width: 1450px; height: 450px;}

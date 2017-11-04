@@ -23,10 +23,14 @@
 
     <!-- Css/Less Stylesheets -->
     <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/dc.min.css' %}">
     <link rel="stylesheet" href="{% static 'styles/main.min.css' %}">
     <link rel="stylesheet" href="{% static 'styles/animate.css' %}">
     <link rel="stylesheet" href="{% static 'styles/hover-min.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/custom.css' %}">
 
+    {% block extra_css %}
+    {% endblock %}
     <!-- Match Media polyfill for IE9 -->
     <!--[if IE 9]> <script src="scripts/ie/matchMedia.js"></script>  <![endif]-->
 
@@ -223,7 +227,8 @@
     <script src="{% static 'scripts/inbox.init.js' %}"></script>
     <script src="{% static 'scripts/tables.init.js' %}"></script>
     <script src="{% static 'scripts/views.js' %}"></script>
-
+    {% block extra_js %}
+    {% endblock %}
 </body>
 
 </html>
