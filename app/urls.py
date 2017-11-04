@@ -23,7 +23,11 @@ urlpatterns = [
         name='faults'),
     url(r'^api/get_all_faults/$', api_views.GetAllFaults.as_view(),
         name='get_all_faults'),
-    url(r'^api/casemanager/(?P<responder>\w+)/', api_views.GetFaultsByReporter.as_view(),
+    # url(r'^casemanager/(?P<responder>\w+)/', api_views.GetFaultsByReporter.as_view(),
+    #    name='casemanager'),
+    url(r'^myfaults/(?P<responder>\w+)/', api_views.GetFaultsByReporter.as_view(),
+        name='myfaults'),
+    url(r'^api/casemanager/', api_views.GetCaseManager.as_view(),
         name='casemanager'),
     url(r'^api/employee/', api_views.GetEmployees.as_view(), name='employee'),
     url(r'^personal/(?P<username>\w+)/', api_views.GetUser.as_view(),
@@ -31,7 +35,7 @@ urlpatterns = [
     url(r'^api/user/', api_views.RegisterCitizen.as_view(),
         name='user'),
     url(r'^api/api_auth/(?P<username>\w+)/(?P<password>.+)/',
-        views.LoginAuth.as_view(), name='api_auth'),
+        views.LoginAuth.as_view(), name='api_auth')
     url(r'^login/$', auth_views.LoginView.as_view(
         template_name='login.html', form_class=forms.LoginForm),
         name='login'),

@@ -27,10 +27,7 @@
     <link rel="stylesheet" href="{% static 'styles/main.min.css' %}">
     <link rel="stylesheet" href="{% static 'styles/animate.css' %}">
     <link rel="stylesheet" href="{% static 'styles/hover-min.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/custom.css' %}">
-
-    {% block extra_css %}
-    {% endblock %}
+    <link rel="stylesheet" href="{% static 'styles/custom.css' %}"> {% block extra_css %} {% endblock %}
     <!-- Match Media polyfill for IE9 -->
     <!--[if IE 9]> <script src="scripts/ie/matchMedia.js"></script>  <![endif]-->
 
@@ -143,7 +140,7 @@
                             <span class="ion ion-lock-combination">&nbsp;&nbsp;</span>Lock Screen</a>
                     </li>
                     <li>
-                        <a href="{% url 'login' %}" class="hvr-grow">
+                        <a href="{% url 'logout' %}?next={% url 'login' %}" class="hvr-grow">
                             <span class="ion ion-power">&nbsp;&nbsp;</span>Logout</a>
                     </li>
                 </ul>
@@ -226,9 +223,7 @@
     <script src="{% static 'scripts/app.js' %}"></script>
     <script src="{% static 'scripts/inbox.init.js' %}"></script>
     <script src="{% static 'scripts/tables.init.js' %}"></script>
-    <script src="{% static 'scripts/views.js' %}"></script>
-    {% block extra_js %}
-    {% endblock %}
+    <script src="{% static 'scripts/views.js' %}"></script> {% block extra_js %} {% endblock %}
 </body>
 
 </html>

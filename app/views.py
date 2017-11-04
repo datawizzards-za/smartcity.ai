@@ -18,6 +18,7 @@ from django.http import HttpResponseForbidden, HttpResponse
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.models import User
 from django.core import serializers
+import requests
 # Create your views here.
 
 
@@ -25,7 +26,14 @@ class CaseMan(View):
     template_name = 'caseman.html'
 
     def get(self, request):
+
         # context = {''}
+        user = models.User.objects.get(username=self.request.user)
+        mycases = models.CaseManager.objects.filter(responder_id=user.id)
+        new = mycases.filter(status='')
+        # pending =
+        # closed =
+        # context = {'mycases': mycases, 'new_cases': new, 'pending': pending, closed}
         return render(request, self.template_name)
 
 
@@ -91,7 +99,6 @@ class LoadEmployeesData(View):
         User.objects.all().delete()
         models.Employee.objects.all().delete()
         models.Citizen.objects.all().delete()
-        models.Fault.objects.all().delete()
 
         print("loading employee pickel file...")
         employees_data = pickle.load(open('data/employee_data.pkl'))
@@ -165,9 +172,9 @@ class LoadEmployeesData(View):
             ).date()
 
             m_fault = models.Fault.objects.create(
-                defect=fault['defect'],
-                category=fault['category'],
-                location=fault['address'],
+                defect=fault['defect'].title(),
+                category=fault['category'].title(),
+                location=fault['address'].title(),
                 date_created=date_created,
                 date_submitted=date_submitted
             )
@@ -182,7 +189,8 @@ class LoadEmployeesData(View):
 
         print("creating faults...")
         for m_fault in m_faults:
-            num_others = randint(1, 4)
+
+            num_others = randint(0, 4)
             other_reporters = User.objects.order_by('?')[:num_others]
 
             for reporter in other_reporters:
