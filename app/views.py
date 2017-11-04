@@ -16,6 +16,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseForbidden, HttpResponse
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.models import User
+import requests
 # Create your views here.
 
 
@@ -23,8 +24,12 @@ class CaseMan(View):
     template_name = 'caseman.html'
 
     def get(self, request):
-        # cases = models.
-        #context = {''}
+        user = models.User.objects.get(username=self.request.user)
+        mycases = models.CaseManager.objects.filter(responder_id=user.id)
+        new = mycases.filter(status='')
+        # pending =
+        # closed =
+        # context = {'mycases': mycases, 'new_cases': new, 'pending': pending, closed}
         return render(request, self.template_name)
 
 

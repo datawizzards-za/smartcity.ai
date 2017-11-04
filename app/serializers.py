@@ -53,9 +53,11 @@ class FaultsSerializer(serializers.ModelSerializer):
 
 
 class CaseManagerSerializer(serializers.ModelSerializer):
+    fault = FaultsSerializer(many=False, read_only=True)
+
     class Meta:
         model = models.CaseManager
-        fields = ['fault_id', 'responder', 'status', 'reason']
+        fields = ['status', 'reason', 'fault']
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -110,9 +112,3 @@ class FaultSerializer(serializers.ModelSerializer):
                                                 province=province)
         return dataset
     """
-
-
-class CaseManagerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.CaseManager
-        fields = ['fault_id', 'responder', 'status', 'reason']

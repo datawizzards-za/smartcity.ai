@@ -32,8 +32,8 @@ class GetCaseManager(generics.ListAPIView):
     serializer_class = serializers.CaseManagerSerializer
 
     def get_queryset(self):
-        responder = self.kwargs['responder']
-        return models.CaseManager.objects.filter(responder=responder)
+        user = models.User.objects.get(username=self.request.user)
+        return models.CaseManager.objects.filter(responder_id=user.id)
 
 
 class GetEmployees(generics.ListAPIView):
