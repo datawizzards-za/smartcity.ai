@@ -38,7 +38,8 @@ class GetCaseManager(generics.ListAPIView):
 
     def get_queryset(self):
         user = models.User.objects.get(username=self.request.user)
-        return models.CaseManager.objects.filter(responder_id=user.id)
+        emp = models.Employee.objects.get(user_id=user.id)
+        return models.CaseManager.objects.filter(responder_id=emp.id)
 
 
 class GetEmployees(generics.ListAPIView):
