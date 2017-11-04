@@ -29,6 +29,8 @@ urlpatterns = [
         name='myfaults'),
     url(r'^api/casemanager/', api_views.GetCaseManager.as_view(),
         name='casemanager'),
+    url(r'^api/all_cases/', api_views.GetAllCases.as_view(),
+        name='all_cases'),
     url(r'^api/employee/', api_views.GetEmployees.as_view(), name='employee'),
     url(r'^personal/(?P<username>\w+)/', api_views.GetUser.as_view(),
         name='personal'),

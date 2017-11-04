@@ -42,6 +42,11 @@ class GetCaseManager(generics.ListAPIView):
         return models.CaseManager.objects.filter(responder_id=emp.id)
 
 
+class GetAllCases(generics.ListAPIView):
+    queryset = models.CaseManager.objects.all()
+    serializer_class = serializers.CaseManagerSerializer
+
+
 class GetEmployees(generics.ListAPIView):
     serializers = serializers.EmployeeSerializer
 
