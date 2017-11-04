@@ -28,6 +28,11 @@ class RegisterCitizen(generics.ListCreateAPIView):
     serializer_class = serializers.UserSerializer
 
 
+class ListCreateCitizen(generics.ListCreateAPIView):
+    queryset = models.Citizen.objects.all()
+    serializer_class = serializers.CitizenSerializer
+
+
 class GetCaseManager(generics.ListAPIView):
     serializer_class = serializers.CaseManagerSerializer
 
