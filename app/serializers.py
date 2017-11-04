@@ -28,11 +28,28 @@ class EmployeeSerializer(serializers.ModelSerializer):
         fields = ['user', 'job_title', 'specialization', 'job_desc', 'cell']
 
 
-class FaultsSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email']
+
+
+class CitizenSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+    class Meta:
+        model = models.Citizen
+        fields = ['user', 'cell']
+
+
+class FaultSerializer(serializers.ModelSerializer):
+    reporters = CitizenSerializer(many=True, read_only=True)
     class Meta:
         model = models.Fault
-        fields = ['name', 'description', 'reporter', 'location']
+        #fields = ['uuid', 'name', 'file_url', 'created_at', 'modified_at']
+        fields = ['defect', 'category', 'reporters', 'location', 
+                  'date_created', 'date_submitted']
 
+    """
     def create(self, validated_data):
         name = validated_data.get('name')
         description = validated_data.get('description')
@@ -44,7 +61,7 @@ class FaultsSerializer(serializers.ModelSerializer):
                                                 city=city,
                                                 province=province)
         return dataset
-
+    """
 
 class CaseManagerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -72,19 +89,4 @@ class UserSerializer(serializers.ModelSerializer):
                                    password=password)
         dataset = models.Citizen.objects.create(user=user,
                                                 cell=cell)
-        return dataset
-
-
-class FaultsCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Fault
-        fields = ['uuid', 'name', 'file_url', 'created_at', 'modified_at']
-
-    def create(self, validated_data):
-        uuid = validated_data.get('uuid')
-        name = validated_data.get('name')
-        file_url = validated_data.get('file_url')
-
-        dataset = None
-
         return dataset
