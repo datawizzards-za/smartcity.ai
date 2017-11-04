@@ -58,7 +58,7 @@ class CaseManagerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.CaseManager
-        fields = ['status', 'reason', 'fault']
+        fields = ['responder', 'status', 'reason', 'fault']
 
 
 class UserSerializer(serializers.ModelSerializer):
