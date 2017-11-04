@@ -34,14 +34,14 @@ class Fault(models.Model):
     reporters = models.ManyToManyField(Citizen)
     #location = models.ForeignKey(Address, on_delete=models.CASCADE)
     location = models.CharField(max_length=300)
-    date_submitted = models.DateTimeField(auto_now=True)
-    date_created = models.DateField(auto_now=True)
+    date_submitted = models.DateTimeField()
+    date_created = models.DateField()
     #verification_score = models.IntegerField()
 
 
 class CaseManager(models.Model):
     fault = models.ForeignKey(Fault, on_delete=models.CASCADE)
-    responder = models.OneToOneField(Employee, on_delete=models.CASCADE)
+    responder = models.ForeignKey(Employee, on_delete=models.CASCADE)
     status = models.CharField(max_length=10)
     reason = models.CharField(max_length=150, null=True)
 
@@ -72,6 +72,12 @@ class Vacancy(models.Model):
     closing_date = models.CharField(max_length=10)
 
 
+class Applicant(models.Model):
+    user = models.ForeignKey(Citizen, on_delete=models.CASCADE)
+    qualifications = models.CharField(max_length=200)
+    skills = models.CharField(max_length=200)
+
+
 class Application(models.Model):
-    applicant = models.ForeignKey(Citizen, on_delete=models.CASCADE)
+    applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     job = models.ForeignKey(Vacancy, on_delete=models.CASCADE)

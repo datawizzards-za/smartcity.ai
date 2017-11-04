@@ -121,4 +121,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/app/case-man/'
+
+LOGIN_URL = 'login'
+
+LOGOUT_NEXT = '/app/login/'
+
+SESSION_SAVE_EVERY_REQUEST = True

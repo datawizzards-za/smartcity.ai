@@ -139,12 +139,34 @@
 							<div class="tab-pane animated rotateInDownRight" id="tab-employee">
 								<div class="row clearfix">
 									<!-- Data Table -->
-									<div class="col-md-12">
-										<div class="panel panel-lined table-responsive panel-hovered mb20 data-table" style="padding-bottom: 20px">
+									<div class="col-md-4">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+                      <div class="panel-heading">
+                        <span>Status</span>
+                        <small class="pull-right">
+                          <a id="reset-status" href="#">reset</a>
+                        </small>
+                      </div>
 											<div class="panel-body">
+                        <div id="status-chart"></div>
 											</div>
 										</div>
 									</div>
+
+                  <div class="col-md-3">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+                      <div class="panel-heading">
+                        <span>Reason</span>
+                        <small class="pull-right">
+                          <a id="reset-reason" href="#">reset</a>
+                        </small>
+											</div>
+											<div class="panel-body">
+                        <div id="reason-chart"></div>
+											</div>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>

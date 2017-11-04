@@ -1,16 +1,29 @@
-$(document).ready(function(){
+$(document).ready(function () {
     queue()
-        .defer(d3.json, "/app/get_all_faults/")
-        .await(makeGraphs);
+        .defer(d3.json, "/app/api/get_all_faults/")
+        .defer(d3.json, "/app/api/all_cases/")
+        .awaitAll(handleData);
 
-    function makeGraphs(error, recordsJson) {
+    function handleData(error, data) {
+       makeFaultsGraphs(data[0]);
+       makeCasesGraphs(data[1]);
+    }
+
+    function makeFaultsGraphs(recordsJson) {
         //Clean data
         //var records = recordsJson;
         var records = [];
         //"2014-12-24T00:00:00Z"
+<<<<<<< HEAD
         var dateFormat = d3.time.format("%Y-%m-%dT%H:%M:%SZ");
 
+        recordsJson.forEach(function (d) {
+=======
+        //var dateFormat = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
+        var dateFormat = d3.time.format.iso;
+        
         recordsJson.forEach(function(d) {
+>>>>>>> origin/dev
             var length = d['reporters'].length;
 
             for (var i = 0; i < length; i++) {
@@ -23,7 +36,7 @@ $(document).ready(function(){
                 tmp["defect"] = d["defect"];
                 tmp["location"] = d["location"];
                 var user = d['reporters'][i]['user'];
-                tmp["reporter"] = user['first_name']  + " " + user['last_name'];
+                tmp["reporter"] = user['first_name'] + " " + user['last_name'];
                 records.push(tmp);
             }
         });
@@ -32,13 +45,13 @@ $(document).ready(function(){
         var ndx = crossfilter(records);
 
         //Define Dimensions
-        var submittedDim = ndx.dimension(function(d) { return d["date_submitted"]; });
-        var createdDim = ndx.dimension(function(d) { return d["date_created"]; });
-        var categoryDim = ndx.dimension(function(d) { return d["category"]; });
-        var defectDim = ndx.dimension(function(d) { return d["defect"]; });
-        var locationDim = ndx.dimension(function(d) { return d["location"]; });
-        var reporterDim = ndx.dimension(function(d) { return d["reporter"]; });
-        var allDim = ndx.dimension(function(d) {return d;});
+        var submittedDim = ndx.dimension(function (d) { return d["date_submitted"]; });
+        var createdDim = ndx.dimension(function (d) { return d["date_created"]; });
+        var categoryDim = ndx.dimension(function (d) { return d["category"]; });
+        var defectDim = ndx.dimension(function (d) { return d["defect"]; });
+        var locationDim = ndx.dimension(function (d) { return d["location"]; });
+        var reporterDim = ndx.dimension(function (d) { return d["reporter"]; });
+        var allDim = ndx.dimension(function (d) { return d; });
 
         //Group Data
         var submittedGroup = submittedDim.group();
@@ -60,16 +73,16 @@ $(document).ready(function(){
 
         var minDate = submittedDim.bottom(1)[0]["date_submitted"];
         var maxDate = submittedDim.top(1)[0]["date_submitted"];
-        
+
         numberRecordsND
             .formatNumber(d3.format("d"))
-            .valueAccessor(function(d){return d; })
+            .valueAccessor(function (d) { return d; })
             .group(all);
 
         submittedChart
             .width(1500)
             .height(395)
-            .margins({top: 10, right: 50, bottom: 40, left: 40})
+            .margins({ top: 10, right: 50, bottom: 40, left: 40 })
             .dimension(submittedDim)
             .group(submittedGroup)
             .xUnits(d3.time.days)
@@ -89,34 +102,34 @@ $(document).ready(function(){
             .innerRadius(20);
 
         locationChart
-            .data(function(group) { return group.top(10); })
+            .data(function (group) { return group.top(10); })
             .width(300)
             .height(390)
             .dimension(locationDim)
             .group(locationGroup)
-            .ordering(function(d) { return -d.value })
+            .ordering(function (d) { return -d.value })
             //.colors(['#6baed6'])
             .elasticX(true)
             .xAxis().ticks(4);
 
         defectChart
-            .data(function(group) { return group.top(10); })
+            .data(function (group) { return group.top(10); })
             .width(300)
             .height(390)
             .dimension(defectDim)
             .group(defectGroup)
-            .ordering(function(d) { return -d.value })
+            .ordering(function (d) { return -d.value })
             //.colors(['#6baed6'])
             .elasticX(true)
             .xAxis().ticks(4);
 
         reporterChart
-            .data(function(group) { return group.top(3); })
+            .data(function (group) { return group.top(3); })
             .width(240)
             .height(180)
             .dimension(reporterDim)
             .group(reporterGroup)
-            .ordering(function(d) { return -d.value })
+            .ordering(function (d) { return -d.value })
             //.colors(['#6baed6'])
             .elasticX(true)
             .xAxis().ticks(4);
@@ -153,5 +166,49 @@ $(document).ready(function(){
             reporterChart.filterAll();
             dc.redrawAll();
         });
+    }
+
+
+    function makeCasesGraphs(recordsJson) {
+        //Create a Crossfilter instance
+        var ndx = crossfilter(recordsJson);
+
+        var reasonDim = ndx.dimension(function(d) { return d["reason"]; });
+        var statusDim = ndx.dimension(function(d) { return d["status"]; });
+        var allDim = ndx.dimension(function(d) {return d;});
+
+        var reasonGroup = reasonDim.group();
+        var statusGroup = statusDim.group();
+        var all = ndx.groupAll();
+
+        var numberRecordsND = dc.numberDisplay("#number-records-nd1");
+        var reasonChart = dc.rowChart("#reason-chart");
+        var statusChart = dc.pieChart("#status-chart");
+
+        numberRecordsND
+            .formatNumber(d3.format("d"))
+            .valueAccessor(function(d){return d; })
+            .group(all);
+
+        statusChart
+            .width(350)
+            .height(390)
+            .dimension(statusDim)
+            .group(statusGroup)
+            .legend(dc.legend().x(380).y(20))
+            .innerRadius(20);
+
+        reasonChart
+            .data(function(group) { return group.top(10); })
+            .width(300)
+            .height(390)
+            .dimension(reasonDim)
+            .group(reasonGroup)
+            .ordering(function(d) { return -d.value })
+            //.colors(['#6baed6'])
+            .elasticX(true)
+            .xAxis().ticks(4);
+
+        dc.renderAll();
     }
 });
