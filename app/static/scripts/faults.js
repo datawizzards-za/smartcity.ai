@@ -1,9 +1,15 @@
 $(document).ready(function(){
     queue()
         .defer(d3.json, "/app/api/get_all_faults/")
-        .await(makeGraphs);
+        .defer(d3.json, "/app/api/all_cases/")
+        .awaitAll(handleData);
 
-    function makeGraphs(error, recordsJson) {
+    function handleData(error, data) {
+       makeFaultsGraphs(data[0]);
+       makeCasesGraphs(data[1]);
+    }
+
+    function makeFaultsGraphs(recordsJson) {
         //Clean data
         //var records = recordsJson;
         var records = [];
@@ -154,5 +160,49 @@ $(document).ready(function(){
             reporterChart.filterAll();
             dc.redrawAll();
         });
+    }
+
+
+    function makeCasesGraphs(recordsJson) {
+        //Create a Crossfilter instance
+        var ndx = crossfilter(recordsJson);
+
+        var reasonDim = ndx.dimension(function(d) { return d["reason"]; });
+        var statusDim = ndx.dimension(function(d) { return d["status"]; });
+        var allDim = ndx.dimension(function(d) {return d;});
+
+        var reasonGroup = reasonDim.group();
+        var statusGroup = statusDim.group();
+        var all = ndx.groupAll();
+
+        var numberRecordsND = dc.numberDisplay("#number-records-nd1");
+        var reasonChart = dc.rowChart("#reason-chart");
+        var statusChart = dc.pieChart("#status-chart");
+
+        numberRecordsND
+            .formatNumber(d3.format("d"))
+            .valueAccessor(function(d){return d; })
+            .group(all);
+
+        statusChart
+            .width(350)
+            .height(390)
+            .dimension(statusDim)
+            .group(statusGroup)
+            .legend(dc.legend().x(380).y(20))
+            .innerRadius(20);
+
+        reasonChart
+            .data(function(group) { return group.top(10); })
+            .width(300)
+            .height(390)
+            .dimension(reasonDim)
+            .group(reasonGroup)
+            .ordering(function(d) { return -d.value })
+            //.colors(['#6baed6'])
+            .elasticX(true)
+            .xAxis().ticks(4);
+
+        dc.renderAll();
     }
 });
