@@ -5,20 +5,27 @@ $(document).ready(function(){
 
     function makeGraphs(error, recordsJson) {
         //Clean data
-        var records = recordsJson;
+        //var records = recordsJson;
+        var records = [];
         //"2014-12-24T00:00:00Z"
         var dateFormat = d3.time.format("%Y-%m-%dT%H:%M:%SZ");
 
-        records.forEach(function(d) {
-            console.log(d);
-            d["date_submitted"] = dateFormat.parse(d["date_submitted"]);
-            d["date_created"] = new Date(d["date_created"]);
-            d["date_submitted"].setMinutes(0);
-            d["date_submitted"].setSeconds(0);
-            d["category"] = d["category"];
-            d["defect"] = d["defect"];
-            d["location"] = d["location"];
-            //d["reporters"] = d["reporters"];
+        recordsJson.forEach(function(d) {
+            var length = d['reporters'].length;
+
+            for (var i = 0; i < length; i++) {
+                tmp = {}
+                tmp["date_submitted"] = dateFormat.parse(d["date_submitted"]);
+                tmp["date_created"] = new Date(d["date_created"]);
+                tmp["date_submitted"].setMinutes(0);
+                tmp["date_submitted"].setSeconds(0);
+                tmp["category"] = d["category"];
+                tmp["defect"] = d["defect"];
+                tmp["location"] = d["location"];
+                var user = d['reporters'][i]['user'];
+                tmp["reporter"] = user['first_name']  + " " + user['last_name'];
+                records.push(tmp);
+            }
         });
 
         //Create a Crossfilter instance
@@ -30,6 +37,7 @@ $(document).ready(function(){
         var categoryDim = ndx.dimension(function(d) { return d["category"]; });
         var defectDim = ndx.dimension(function(d) { return d["defect"]; });
         var locationDim = ndx.dimension(function(d) { return d["location"]; });
+        var reporterDim = ndx.dimension(function(d) { return d["reporter"]; });
         var allDim = ndx.dimension(function(d) {return d;});
 
         //Group Data
@@ -38,6 +46,7 @@ $(document).ready(function(){
         var categoryGroup = categoryDim.group();
         var defectGroup = defectDim.group();
         var locationGroup = locationDim.group();
+        var reporterGroup = reporterDim.group();
         var all = ndx.groupAll();
 
         //Charts
@@ -47,6 +56,7 @@ $(document).ready(function(){
         var categoryChart = dc.pieChart("#category-chart");
         var defectChart = dc.rowChart("#defect-chart");
         var locationChart = dc.rowChart("#location-chart");
+        var reporterChart = dc.rowChart("#reporter-chart");
 
         var minDate = submittedDim.bottom(1)[0]["date_submitted"];
         var maxDate = submittedDim.top(1)[0]["date_submitted"];
@@ -99,6 +109,17 @@ $(document).ready(function(){
             .height(390)
             .dimension(defectDim)
             .group(defectGroup)
+            .ordering(function(d) { return -d.value })
+            //.colors(['#6baed6'])
+            .elasticX(true)
+            .xAxis().ticks(4);
+
+        reporterChart
+            .data(function(group) { return group.top(3); })
+            .width(260)
+            .height(230)
+            .dimension(reporterDim)
+            .group(reporterGroup)
             .ordering(function(d) { return -d.value })
             //.colors(['#6baed6'])
             .elasticX(true)
