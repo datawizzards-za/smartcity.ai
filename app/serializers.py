@@ -55,7 +55,7 @@ class CaseManagerSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password']
 
     def create(self, validate_data):
         username = validate_data.get('username')
@@ -63,16 +63,16 @@ class UserSerializer(serializers.ModelSerializer):
         last_name = validate_data.get('last_name')
         email = validate_data.get('email')
         password = validate_data.get('password')
-        cell = validate_data.get('cell')
-
+        #cell = validate_data.get('cell')
+        # print(cell)
         user = User.objects.create(username=username,
                                    first_name=first_name,
                                    last_name=last_name,
                                    email=email,
                                    password=password)
-        dataset = models.Citizen.objects.create(user=user,
-                                                cell=cell)
-        return dataset
+        # dataset = models.Citizen.objects.create(user=user,
+        #                                         cell=cell)
+        return user
 
 
 class FaultsCreateSerializer(serializers.ModelSerializer):
@@ -85,6 +85,4 @@ class FaultsCreateSerializer(serializers.ModelSerializer):
         name = validated_data.get('name')
         file_url = validated_data.get('file_url')
 
-        dataset = None
-
-        return dataset
+        return True
