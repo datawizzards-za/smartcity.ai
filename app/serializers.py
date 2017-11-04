@@ -31,18 +31,24 @@ class EmployeeSerializer(serializers.ModelSerializer):
 class FaultsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Fault
-        fields = ['name', 'description', 'reporter', 'location']
+        fields = ['defect', 'category', 'description',
+                  'reporters', 'location', 'date_submitted', 'date_created']
 
     def create(self, validated_data):
-        name = validated_data.get('name')
+        defect = validated_data.get('defect')
+        category = validated_data.get('category')
         description = validated_data.get('description')
-        reporter = validated_data.get('reporter')
+        reporters = validated_data.get('reporters')
         location = validated_data.get('location')
-        dataset = models.Address.objects.create(line_one=line_one,
-                                                line_two=line_two,
-                                                gps=gps,
-                                                city=city,
-                                                province=province)
+        date_submitted = validated_data.get('date_submitted')
+        date_created = validated_data.get('date_created')
+        dataset = models.Fault.objects.create(defect=defect,
+                                              category=category,
+                                              description=description,
+                                              reporters=reporters,
+                                              location=location,
+                                              date_submitted=date_submitted,
+                                              date_created=date_created)
         return dataset
 
 

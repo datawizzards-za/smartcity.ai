@@ -9,7 +9,7 @@ from app import models
 from app import serializers
 
 
-class GetFaults(generics.ListAPIView):
+class GetFaults(generics.ListCreateAPIView):
     serializer_class = serializers.FaultsSerializer
 
     def get_queryset(self):

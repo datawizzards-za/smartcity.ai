@@ -33,7 +33,7 @@ class Fault(models.Model):
     description = models.TextField(max_length=1000, null=True)
     reporters = models.ManyToManyField(Citizen)
     #location = models.ForeignKey(Address, on_delete=models.CASCADE)
-    location = models.CharField(max_length=300) 
+    location = models.CharField(max_length=300)
     date_submitted = models.DateTimeField()
     date_created = models.DateField()
     #verification_score = models.IntegerField()
