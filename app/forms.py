@@ -5,8 +5,10 @@ from django.core.exceptions import ValidationError
 
 
 class RegisterUserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
-    password2 = forms.CharField(label="Repeat password", widget=forms.PasswordInput(attrs={'class': 'input'}))
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'input'}))
+    password2 = forms.CharField(
+        label="Repeat password", widget=forms.PasswordInput(attrs={'class': 'input'}))
 
     class Meta:
         model = User
@@ -24,8 +26,9 @@ class RegisterUserForm(forms.ModelForm):
 
         return cd['password2']
 
+
 class LoginForm(AuthenticationForm):
     username = UsernameField(
-        widget=forms.TextInput(attrs={'class': 'input', 'autofocus': True, 'placeholder': 'username'})
-    )
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input', 'placeholder': 'password'}))
+        widget=forms.TextInput(attrs={'class': 'input md-input'}))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'input md-input'}))

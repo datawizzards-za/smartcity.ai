@@ -84,12 +84,15 @@ class LoadEmployeesData(View):
     template_name = 'load_employees_data.html'
 
     def get(self, request):
-        #Remove the already existing users
+        # Remove the already existing users
+        print("\nBEGIN: deleting current data...")
         User.objects.all().delete()
-        models.Employee.objects.all().delete()  
+        models.Employee.objects.all().delete()
         models.Citizen.objects.all().delete()
 
+        print("loading employee pickel file...")
         employees_data = pickle.load(open('data/employee_data.pkl'))
+        print("loading faults json file...")
         faults = json.load(open('data/faults.json'))
         len_employees = len(employees_data)
         len_faults = len(faults)
@@ -102,6 +105,7 @@ class LoadEmployeesData(View):
                         '086']
 
         # Add all users
+        print("loading employees to db...")
         for emp in employees_data:
             names = emp['name'].split(' ')
             first_name, last_name = names[0], names[len(names) - 1]
@@ -144,7 +148,7 @@ class LoadEmployeesData(View):
                 user=user,
                 cell=phone_number
             )
-            fault = faults[i-num_employees]
+            fault = faults[i - num_employees]
             date_created = datetime.datetime.strptime(
                 fault['date_created'],
                 "%Y/%m/%d"
@@ -166,9 +170,9 @@ class LoadEmployeesData(View):
 
             assert m_fault.reporters.all().count()
 
-            print faults[i-num_employees]
+            print faults[i - num_employees]
 
-        m_faults =  models.Fault.objects.all()
+        m_faults = models.Fault.objects.all()
 
         for m_fault in m_faults:
             num_others = randint(1, 4) 
@@ -194,7 +198,8 @@ class LoadEmployeesData(View):
                 if citezen.user != citezen1.user:
                     m_fault.reporters.add(citezen)
                     m_fault.save()
-            
+
+        print("DONE: complete.")
 
         return render(request, self.template_name)
 
