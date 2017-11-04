@@ -106,7 +106,8 @@ class LoadEmployeesData(View):
                         '086']
 
         # Add all users
-        print("loading employees to db...")
+        print("\nloading employees to db...")
+        print("creating auth users...")
         for emp in employees_data:
             names = emp['name'].split(' ')
             first_name, last_name = names[0], names[len(names) - 1]
@@ -124,6 +125,7 @@ class LoadEmployeesData(View):
 
         all_users = User.objects.all()
 
+        print("creating employees...")
         for i in range(num_employees):
             user = all_users[i]
             emp = employees_data[i]
@@ -139,6 +141,7 @@ class LoadEmployeesData(View):
             )
 
         # Each user should atleast report one fault
+        print("Creating citizens...")
         for i in range(num_employees, len(employees_data)):
             emp = employees_data[i]
             user = all_users[i]
@@ -175,6 +178,7 @@ class LoadEmployeesData(View):
 
         m_faults = models.Fault.objects.all()
 
+        print("creating faults...")
         for m_fault in m_faults:
             num_others = randint(0, 4)
             other_reporters = User.objects.order_by('?')[:num_others]

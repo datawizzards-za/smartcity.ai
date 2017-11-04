@@ -28,6 +28,36 @@ class EmployeeSerializer(serializers.ModelSerializer):
         fields = ['user', 'job_title', 'specialization', 'job_desc', 'cell']
 
 
+class FaultsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Fault
+        fields = ['defect', 'category', 'description',
+                  'reporters', 'location', 'date_submitted', 'date_created']
+
+    def create(self, validated_data):
+        defect = validated_data.get('defect')
+        category = validated_data.get('category')
+        description = validated_data.get('description')
+        reporters = validated_data.get('reporters')
+        location = validated_data.get('location')
+        date_submitted = validated_data.get('date_submitted')
+        date_created = validated_data.get('date_created')
+        dataset = models.Fault.objects.create(defect=defect,
+                                              category=category,
+                                              description=description,
+                                              reporters=reporters,
+                                              location=location,
+                                              date_submitted=date_submitted,
+                                              date_created=date_created)
+        return dataset
+
+
+class CaseManagerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.CaseManager
+        fields = ['fault_id', 'responder', 'status', 'reason']
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -39,20 +69,20 @@ class UserSerializer(serializers.ModelSerializer):
         last_name = validate_data.get('last_name')
         email = validate_data.get('email')
         password = first_name + "." + last_name
-        #cell = validate_data.get('cell')
-        # print(cell)
+        cell = validate_data.get('cell')
         user = User.objects.create(username=username,
                                    first_name=first_name,
                                    last_name=last_name,
                                    email=email,
                                    password=password)
-        # dataset = models.Citizen.objects.create(user=user,
-        #                                         cell=cell)
+        dataset = models.Citizen.objects.create(user=user,
+                                                cell=cell)
         return user
 
 
 class CitizenSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = models.Citizen
         fields = ['user', 'cell']
@@ -60,10 +90,11 @@ class CitizenSerializer(serializers.ModelSerializer):
 
 class FaultSerializer(serializers.ModelSerializer):
     reporters = CitizenSerializer(many=True, read_only=True)
+
     class Meta:
         model = models.Fault
         #fields = ['uuid', 'name', 'file_url', 'created_at', 'modified_at']
-        fields = ['defect', 'category', 'reporters', 'location', 
+        fields = ['defect', 'category', 'reporters', 'location',
                   'date_created', 'date_submitted']
 
     """
@@ -79,6 +110,7 @@ class FaultSerializer(serializers.ModelSerializer):
                                                 province=province)
         return dataset
     """
+
 
 class CaseManagerSerializer(serializers.ModelSerializer):
     class Meta:
