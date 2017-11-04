@@ -33,7 +33,7 @@ class Fault(models.Model):
     description = models.TextField(max_length=1000, null=True)
     reporters = models.ManyToManyField(Citizen)
     #location = models.ForeignKey(Address, on_delete=models.CASCADE)
-    location = models.CharField(max_length=300) 
+    location = models.CharField(max_length=300)
     date_submitted = models.DateTimeField()
     date_created = models.DateField()
     #verification_score = models.IntegerField()
@@ -43,7 +43,7 @@ class CaseManager(models.Model):
     fault = models.ForeignKey(Fault, on_delete=models.CASCADE)
     responder = models.ForeignKey(Employee, on_delete=models.CASCADE)
     status = models.CharField(max_length=10)
-    reason = models.CharField(max_length=150)
+    reason = models.CharField(max_length=150, null=True)
 
 
 class Schedular(models.Model):
@@ -61,3 +61,17 @@ class TrustedReporters(models.Model):
 class ReporterRewards(models.Model):
     fault = models.ForeignKey(Fault, on_delete=models.CASCADE)
     reporter = models.ForeignKey(Citizen, on_delete=models.CASCADE)
+
+
+class Vacancy(models.Model):
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=150)
+    skills = models.CharField(max_length=200)
+    qualifications = models.CharField(max_length=200)
+    posting_date = models.CharField(max_length=10)
+    closing_date = models.CharField(max_length=10)
+
+
+class Application(models.Model):
+    applicant = models.ForeignKey(Citizen, on_delete=models.CASCADE)
+    job = models.ForeignKey(Vacancy, on_delete=models.CASCADE)

@@ -23,6 +23,7 @@ class CaseMan(View):
     template_name = 'caseman.html'
 
     def get(self, request):
+        # cases = models.
         #context = {''}
         return render(request, self.template_name)
 
@@ -89,7 +90,6 @@ class LoadEmployeesData(View):
         User.objects.all().delete()
         models.Employee.objects.all().delete()
         models.Citizen.objects.all().delete()
-        models.Fault.objects.all().delete()
 
         print("loading employee pickel file...")
         employees_data = pickle.load(open('data/employee_data.pkl'))
@@ -176,7 +176,7 @@ class LoadEmployeesData(View):
         m_faults = models.Fault.objects.all()
 
         for m_fault in m_faults:
-            num_others = randint(1, 4) 
+            num_others = randint(0, 4)
             other_reporters = User.objects.order_by('?')[:num_others]
 
             for reporter in other_reporters:
