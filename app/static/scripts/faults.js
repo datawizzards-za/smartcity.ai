@@ -76,13 +76,9 @@ $(document).ready(function(){
             .controlsUseVisibility(true)
             .transitionDuration(500)
             .x(d3.time.scale().domain([minDate, maxDate]))
-            .round(d3.time.month.round)
-            .elasticX(true)
-            //.xAxis().tickFormat(d3.time.format('%b %y'))
             .elasticY(true)
             .xAxisLabel("Date Submitted")
             .yAxisLabel("Number of faults");
-            //.yAxis().ticks(4);
 
         categoryChart
             .width(350)
