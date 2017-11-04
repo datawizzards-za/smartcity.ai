@@ -23,12 +23,6 @@ class AddressSerializer(serializers.ModelSerializer):
         return dataset
 
 
-class EmployeeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Employee
-        fields = ['user', 'job_title', 'specialization', 'job_desc', 'cell']
-
-
 class FaultsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Fault
@@ -58,7 +52,7 @@ class CaseManagerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.CaseManager
-        fields = ['status', 'reason', 'fault']
+        fields = ['responder','status', 'reason', 'fault']
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -81,6 +75,14 @@ class UserSerializer(serializers.ModelSerializer):
         # dataset = models.Citizen.objects.create(user=user,
         #                                        cell = cell)
         return user
+
+
+class EmployeeSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = models.Employee
+        fields = ['user', 'job_title', 'specializations', 'job_desc', 'cell']
 
 
 class CitizenSerializer(serializers.ModelSerializer):
