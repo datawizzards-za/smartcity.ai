@@ -10,12 +10,14 @@ from random import randint
 
 from django.shortcuts import render
 from django.views import View
+from django.contrib.auth import authenticate, login
 from . import models
 from app.forms import RegisterUserForm
 from django.urls import reverse_lazy
 from django.http import HttpResponseForbidden, HttpResponse
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.models import User
+from django.core import serializers
 import requests
 # Create your views here.
 
@@ -24,6 +26,8 @@ class CaseMan(View):
     template_name = 'caseman.html'
 
     def get(self, request):
+
+        # context = {''}
         user = models.User.objects.get(username=self.request.user)
         mycases = models.CaseManager.objects.filter(responder_id=user.id)
         new = mycases.filter(status='open')
@@ -83,7 +87,7 @@ class Schedular(View):
             location=kwargs['loc'],
         )
 
-        #context = {''}
+        # context = {''}
         return render(request, self.template_name)
 
 
@@ -96,6 +100,7 @@ class LoadEmployeesData(View):
         User.objects.all().delete()
         models.Employee.objects.all().delete()
         models.Citizen.objects.all().delete()
+        models.Fault.objects.all().delete()
 
         print("loading employee pickel file...")
         employees_data = pickle.load(open('data/employee_data.pkl'))
@@ -186,6 +191,7 @@ class LoadEmployeesData(View):
 
         print("creating faults...")
         for m_fault in m_faults:
+
             num_others = randint(0, 4)
             other_reporters = User.objects.order_by('?')[:num_others]
 
@@ -230,3 +236,22 @@ class RegisterUserView(CreateView):
         user.set_password(form.cleaned_data['password'])
         user.save()
         return HttpResponse('User registered')
+
+
+class LoginAuth(View):
+    def get(self, request, *args, **kwargs):
+        username = kwargs['username']
+        password = kwargs['password']
+        try:
+            user = User.objects.get(username=username)
+            if user.check_password(password):
+                username = user.username
+                user = authenticate(username=username, password=password)
+                login(request, user)
+                details = User.objects.get(username=username)
+                serialized_obj = serializers.serialize('json', [details, ])
+                return HttpResponse(serialized_obj)
+            else:
+                return HttpResponse("{'messages':'Wrong password'}")
+        except User.DoesNotExist:
+            return HttpResponse("{'message':'username and password incorrect'}")

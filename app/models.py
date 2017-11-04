@@ -34,8 +34,8 @@ class Fault(models.Model):
     reporters = models.ManyToManyField(Citizen)
     #location = models.ForeignKey(Address, on_delete=models.CASCADE)
     location = models.CharField(max_length=300)
-    date_submitted = models.DateTimeField()
-    date_created = models.DateField()
+    date_submitted = models.DateTimeField(auto_now=True)
+    date_created = models.DateField(auto_now=True)
     #verification_score = models.IntegerField()
 
 
