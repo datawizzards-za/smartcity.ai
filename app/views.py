@@ -24,14 +24,12 @@ class CaseMan(View):
     template_name = 'caseman.html'
 
     def get(self, request):
-<<<<<<< HEAD
         user = models.User.objects.get(username=self.request.user)
         mycases = models.CaseManager.objects.filter(responder_id=user.id)
-
-=======
-        # cases = models.
->>>>>>> origin/dev
-        #context = {''}
+        new = mycases.filter(status='')
+        # pending =
+        # closed =
+        # context = {'mycases': mycases, 'new_cases': new, 'pending': pending, closed}
         return render(request, self.template_name)
 
 
@@ -187,11 +185,7 @@ class LoadEmployeesData(View):
 
         print("creating faults...")
         for m_fault in m_faults:
-<<<<<<< HEAD
-            num_others = randint(1, 4)
-=======
             num_others = randint(0, 4)
->>>>>>> origin/dev
             other_reporters = User.objects.order_by('?')[:num_others]
 
             for reporter in other_reporters:
