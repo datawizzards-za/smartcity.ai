@@ -21,14 +21,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
-class CaseMan(View):  # , LoginRequiredMixin):
+class CaseMan(LoginRequiredMixin, View):
     template_name = 'caseman.html'
 
     def get(self, request):
-        user = models.User.objects.get(username=self.request.user)
-        mycases = models.CaseManager.objects.filter(responder_id=user.id)
-        new = mycases.filter(status='closed')
-        print(new)
+        #user = models.User.objects.get(username=self.request.user)
+        #mycases = models.CaseManager.objects.filter(responder_id=user.id)
+        #new = mycases.filter(status='closed')
+        # print(new)
         # pending =
         # closed =
         # context = {'mycases': mycases, 'new_cases': new, 'pending': pending, closed}
