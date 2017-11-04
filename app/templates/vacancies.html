@@ -9,180 +9,106 @@
 				<div class="col-md-12 mb30">
 					<!-- tab style -->
 					<div class="clearfix tabs-right tabs-fill">
-						<ul class="nav nav-tabs">
-							<li class="active">
-								<a href="#tab-recommended" data-toggle="tab">recommended</a>
-							</li>
-							<li>
-								<a href="#tab-search" data-toggle="tab">search</a>
-							</li>
-						</ul>
 						<div class="tab-content">
-							<div class="tab-pane active animated rotateInDownRight" id="tab-recommended">
-								<div class="row clearfix">
-									<!-- List Groups -->
-									<div class="col-sm-12">
-										<div class="panel panel-default panel-hovered panel-stacked mb30">
-											<div class="panel-body">
-												<!-- inner row -->
-												<div class="row">
-													<!-- #end col -->
+							<div class="row clearfix">
 
-													<div class="col-md-5 col-sm-12">
-														<p class="small text-muted text-uppercase text-bold mb15">
-															For you...
-														</p>
-														<div class="list-group">
-															{% for i in '12345' %}
-															<a href="javascript:;" class="list-group-item hvr-grow">
-																Electrician, Closing on {{i}} Dec 2017
-															</a>
-															{% endfor %}
-														</div>
-													</div>
-													<!-- #end col -->
-
-													<div class="col-md-7 col-sm-12">
-														<p class="small text-muted text-uppercase text-bold mb15">Details...</p>
-														<div class="list-group">
-															<a href="javascript:;" class="list-group-item list-group-item-success">
-																<h4 class="list-group-item-heading">Department, Municipality</h4>
-																<p class="list-group-item-text">
-																	Electrical Engineer, Job Ref#2017001EE
-																	<br />
-																	<br />
-																	<br />
-																	<br />
-																	<br />
-																	<br />
-																	<br />
-																	<br />
-																	<br />
-																	<br />
-																	<br />
-																	<br />
-																	<br /> Job Description
-
-																</p>
-															</a>
-														</div>
-													</div>
-													<!-- #end col -->
-
-
-												</div>
-												<!-- #end inner row -->
+								<!-- Data Table -->
+								<div class="col-md-12">
+									<div class="panel panel-lined table-responsive panel-hovered mb20 data-table" style="padding-bottom: 20px">
+										<div class="panel-body">
+											<div class="small text-bold left mt5">
+												Show&nbsp;
+												<select class="lengthSelect">
+													<option value="5">5</option>
+													<option value="10" selected>10</option>
+													<option value="20">20</option>
+													<option value="50">50</option>
+												</select>
+												&nbsp;entries
 											</div>
-											<!-- #end panel-body -->
+
+											<form class="form-horizontal right col-lg-4" action="javascript:;">
+												<input type="text" class="form-control input-sm searchInput has-success" placeholder="Enter keyword">
+											</form>
 										</div>
-										<!-- #end panel -->
-									</div>
-									<!-- #end col -->
-								</div>
-							</div>
-							<div class="tab-pane animated rotateInDownRight" id="tab-search">
-								<div class="row clearfix">
-
-									<!-- Data Table -->
-									<div class="col-md-12">
-										<div class="panel panel-lined table-responsive panel-hovered mb20 data-table" style="padding-bottom: 20px">
-											<div class="panel-body">
-												<div class="small text-bold left mt5">
-													Show&nbsp;
-													<select class="lengthSelect">
-														<option value="5">5</option>
-														<option value="10" selected>10</option>
-														<option value="20">20</option>
-														<option value="50">50</option>
-													</select>
-													&nbsp;entries
-												</div>
-
-												<form class="form-horizontal right col-lg-4" action="javascript:;">
-													<input type="text" class="form-control input-sm searchInput has-success" placeholder="Enter keyword">
-												</form>
-											</div>
-											<!-- data table -->
-											<div class="col-md-7 col-sm-12">
-												<table class="table table-hover table-striped">
-													<thead>
-														<tr>
-															<th>
-																Job Title
-																<div class="th">
-																	<i class="fa fa-caret-up icon-up"></i>
-																	<i class="fa fa-caret-down icon-down"></i>
-																</div>
-															</th>
-															<th>
-																Employer
-																<div class="th">
-																	<i class="fa fa-caret-up icon-up"></i>
-																	<i class="fa fa-caret-down icon-down"></i>
-																</div>
-															</th>
-															<th>
-																Closing Date
-																<div class="th">
-																	<i class="fa fa-caret-up icon-up"></i>
-																	<i class="fa fa-caret-down icon-down"></i>
-																</div>
-															</th>
-														</tr>
-													</thead>
-													<tbody>
-														<!-- data initialize via script, can also be load via ajax -->
-													</tbody>
-												</table>
-											</div>
-											<!-- #end data table -->
+										<!-- data table -->
+										<div class="col-md-7 col-sm-12">
+											<table class="table table-hover table-striped">
+												<thead>
+													<tr>
+														<th>
+															Job Title
+															<div class="th">
+																<i class="fa fa-caret-up icon-up"></i>
+																<i class="fa fa-caret-down icon-down"></i>
+															</div>
+														</th>
+														<th>
+															Applicant
+															<div class="th">
+																<i class="fa fa-caret-up icon-up"></i>
+																<i class="fa fa-caret-down icon-down"></i>
+															</div>
+														</th>
+														<th>
+															Closing Date
+															<div class="th">
+																<i class="fa fa-caret-up icon-up"></i>
+																<i class="fa fa-caret-down icon-down"></i>
+															</div>
+														</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!-- data initialize via script, can also be load via ajax -->
+												</tbody>
+											</table>
+										</div>
+										<!-- #end data table -->
 
 
-											<div class="col-md-5 col-sm-12">
-												<p class="small text-muted text-uppercase text-bold mb15">Details...</p>
-												<div class="list-group">
-													<a href="javascript:;" class="list-group-item list-group-item-success">
-														<h4 class="list-group-item-heading">Department, Municipality</h4>
-														<p class="list-group-item-text">
-															Electrical Engineer, Job Ref#2017001EE
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br />
-															<br /> Job Description
+										<div class="col-md-5 col-sm-12">
+											<div class="list-group">
+												<a href="javascript:;" class="list-group-item list-group-item-success">
+													<h4 class="list-group-item-heading">Department, Municipality</h4>
+													<p class="list-group-item-text">
+														Electrical Engineer, Job Ref#2017001EE
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br />
+														<br /> Job Description
 
-														</p>
-													</a>
-												</div>
+													</p>
+												</a>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							<!-- tab style -->
 						</div>
-						<!-- tab style -->
+						<!-- #end tabs-right -->
 					</div>
-					<!-- #end tabs-right -->
-				</div>
-				<!-- #end row -->
+					<!-- #end row -->
 
+				</div>
+				<!-- #end page-wrap -->
 			</div>
-			<!-- #end page-wrap -->
+			<!-- #end page -->
 		</div>
-		<!-- #end page -->
-	</div>
-	<!-- #end content-container -->
-	{% endblock main_content %}
+		<!-- #end content-container -->
+		{% endblock main_content %}

@@ -24,9 +24,13 @@ class CaseMan(View):
     template_name = 'caseman.html'
 
     def get(self, request):
+<<<<<<< HEAD
         user = models.User.objects.get(username=self.request.user)
         mycases = models.CaseManager.objects.filter(responder_id=user.id)
 
+=======
+        # cases = models.
+>>>>>>> origin/dev
         #context = {''}
         return render(request, self.template_name)
 
@@ -93,7 +97,6 @@ class LoadEmployeesData(View):
         User.objects.all().delete()
         models.Employee.objects.all().delete()
         models.Citizen.objects.all().delete()
-        models.Fault.objects.all().delete()
 
         print("loading employee pickel file...")
         employees_data = pickle.load(open('data/employee_data.pkl'))
@@ -167,9 +170,9 @@ class LoadEmployeesData(View):
             ).date()
 
             m_fault = models.Fault.objects.create(
-                defect=fault['defect'],
-                category=fault['category'],
-                location=fault['address'],
+                defect=fault['defect'].title(),
+                category=fault['category'].title(),
+                location=fault['address'].title(),
                 date_created=date_created,
                 date_submitted=date_submitted
             )
@@ -184,7 +187,11 @@ class LoadEmployeesData(View):
 
         print("creating faults...")
         for m_fault in m_faults:
+<<<<<<< HEAD
             num_others = randint(1, 4)
+=======
+            num_others = randint(0, 4)
+>>>>>>> origin/dev
             other_reporters = User.objects.order_by('?')[:num_others]
 
             for reporter in other_reporters:
