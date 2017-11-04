@@ -16,11 +16,8 @@ $(document).ready(function(){
 
             for (var i = 0; i < length; i++) {
                 tmp = {}
-                //var date = d["date_submitted"].substring(0,9);
-                console.log(d["date_submitted"]);
                 tmp["date_submitted"] = dateFormat.parse(d["date_submitted"]);
                 tmp["date_created"] = new Date(d["date_created"]);
-                console.log(tmp["date_submitted"]);
                 tmp["date_submitted"].setMinutes(0);
                 tmp["date_submitted"].setSeconds(0);
                 tmp["category"] = d["category"];
