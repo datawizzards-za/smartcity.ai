@@ -41,7 +41,7 @@ class Fault(models.Model):
 
 class CaseManager(models.Model):
     fault = models.ForeignKey(Fault, on_delete=models.CASCADE)
-    responder = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    responder = models.OneToOneField(Employee, on_delete=models.CASCADE)
     status = models.CharField(max_length=10)
     reason = models.CharField(max_length=150)
 

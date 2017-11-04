@@ -16,6 +16,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseForbidden, HttpResponse
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.models import User
+import requests
 # Create your views here.
 
 
@@ -23,6 +24,9 @@ class CaseMan(View):
     template_name = 'caseman.html'
 
     def get(self, request):
+        user = models.User.objects.get(username=self.request.user)
+        mycases = models.CaseManager.objects.filter(responder_id=user.id)
+
         #context = {''}
         return render(request, self.template_name)
 
@@ -180,7 +184,7 @@ class LoadEmployeesData(View):
 
         print("creating faults...")
         for m_fault in m_faults:
-            num_others = randint(1, 4) 
+            num_others = randint(1, 4)
             other_reporters = User.objects.order_by('?')[:num_others]
 
             for reporter in other_reporters:
