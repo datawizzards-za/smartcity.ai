@@ -9,12 +9,18 @@ from app import models
 from app import serializers
 
 
-class GetFaults(generics.ListCreateAPIView):
+class GetFaultsByReporter(generics.ListAPIView):
     serializer_class = serializers.FaultsSerializer
 
     def get_queryset(self):
         reporter = self.kwargs['reporter']
-        return models.Faults.objects.filter(reporter=reporter)
+        user = User.objects.get(username=reporter)
+        return models.Fault.objects.filter(reporters=user.username)
+
+
+class GetAllFaults(generics.ListCreateAPIView):
+    queryset = models.Fault.objects.all()
+    serializer_class = serializers.FaultSerializer
 
 
 class RegisterCitizen(generics.ListCreateAPIView):

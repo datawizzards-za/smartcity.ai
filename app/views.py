@@ -179,7 +179,7 @@ class LoadEmployeesData(View):
 
         print("creating faults...")
         for m_fault in m_faults:
-            num_others = randint(0, 4)
+            num_others = randint(1, 4) 
             other_reporters = User.objects.order_by('?')[:num_others]
 
             for reporter in other_reporters:

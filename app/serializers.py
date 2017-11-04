@@ -61,34 +61,58 @@ class CaseManagerSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'password']
+        fields = ['first_name', 'last_name', 'username', 'email']
 
     def create(self, validate_data):
         username = validate_data.get('username')
         first_name = validate_data.get('first_name')
         last_name = validate_data.get('last_name')
         email = validate_data.get('email')
-        password = validate_data.get('password')
-        #cell = validate_data.get('cell')
-        # print(cell)
+        password = first_name + "." + last_name
+        cell = validate_data.get('cell')
         user = User.objects.create(username=username,
                                    first_name=first_name,
                                    last_name=last_name,
                                    email=email,
                                    password=password)
-        # dataset = models.Citizen.objects.create(user=user,
-        #                                         cell=cell)
+        dataset = models.Citizen.objects.create(user=user,
+                                                cell=cell)
         return user
 
 
-class FaultsCreateSerializer(serializers.ModelSerializer):
+class CitizenSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = models.Citizen
+        fields = ['user', 'cell']
+
+
+class FaultSerializer(serializers.ModelSerializer):
+    reporters = CitizenSerializer(many=True, read_only=True)
+
     class Meta:
         model = models.Fault
-        fields = ['uuid', 'name', 'file_url', 'created_at', 'modified_at']
+        #fields = ['uuid', 'name', 'file_url', 'created_at', 'modified_at']
+        fields = ['defect', 'category', 'reporters', 'location',
+                  'date_created', 'date_submitted']
 
+    """
     def create(self, validated_data):
-        uuid = validated_data.get('uuid')
         name = validated_data.get('name')
-        file_url = validated_data.get('file_url')
+        description = validated_data.get('description')
+        reporter = validated_data.get('reporter')
+        location = validated_data.get('location')
+        dataset = models.Address.objects.create(line_one=line_one,
+                                                line_two=line_two,
+                                                gps=gps,
+                                                city=city,
+                                                province=province)
+        return dataset
+    """
 
-        return True
+
+class CaseManagerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.CaseManager
+        fields = ['fault_id', 'responder', 'status', 'reason']
