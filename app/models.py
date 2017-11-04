@@ -16,7 +16,7 @@ class Employee(models.Model):
 
 class Citizen(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    cell = models.CharField(max_length=20)
+    cell = models.CharField(max_length=20, null=True)
 
 
 class Address(models.Model):

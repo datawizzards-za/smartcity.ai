@@ -2,6 +2,7 @@ from rest_framework import serializers
 from app import models
 from django.contrib.auth.models import User
 import json
+import datetime
 
 
 class AddressSerializer(serializers.ModelSerializer):
@@ -40,16 +41,18 @@ class FaultsSerializer(serializers.ModelSerializer):
         category = validated_data.get('category')
         description = validated_data.get('description')
         reporters = models.Citizen.objects.all(
-            user__user=validated_data.get('reporters'))
+            user__username=validated_data.get('reporters'))
 
-        address = json.loads(validated_data.get('address'))
-        print(address)
+        #address = json.loads(validated_data.get('address'))
+        # print(address)
         location = validated_data.get('location')
-        # dataset = models.Fault.objects.create(defect=defect,
-        #                                       category=category,
-        #                                       description=description,
-        #                                       reporters=reporters,
-        #                                       location=location)
+        dataset = models.Fault.objects.create(defect=defect,
+                                              category=category,
+                                              description=description,
+                                              reporters=reporters,
+                                              location=location,
+                                              date_submitted=datetime.datetime.now(),
+                                              date_created=datetime.datetime.now())
         return True  # dataset
 
 

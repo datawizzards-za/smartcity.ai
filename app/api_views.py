@@ -15,7 +15,8 @@ class GetFaultsByReporter(generics.ListAPIView):
     def get_queryset(self):
         reporter = self.kwargs['reporter']
         user = User.objects.get(username=reporter)
-        return models.Fault.objects.filter(reporters=user.username)
+        citi = models.Citizen.objects.get(user_id=user.id)
+        return models.Fault.objects.filter(reporters=citi.id)
 
 
 class GetAllFaults(generics.ListCreateAPIView):

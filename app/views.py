@@ -250,6 +250,6 @@ class LoginAuth(View):
                 serialized_obj = serializers.serialize('json', [details, ])
                 return HttpResponse(serialized_obj)
             else:
-                return HttpResponse("{'messages':'Wrong password'}")
+                return HttpResponse('{"messages":"Wrong password"}')
         except User.DoesNotExist:
-            return HttpResponse("{'message':'username and password incorrect'}")
+            return HttpResponse('{"message": "username and password incorrect"}')
