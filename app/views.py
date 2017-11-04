@@ -95,6 +95,7 @@ class LoadEmployeesData(View):
         User.objects.all().delete()
         models.Employee.objects.all().delete()
         models.Citizen.objects.all().delete()
+        models.Fault.objects.all().delete()
 
         print("loading employee pickel file...")
         employees_data = pickle.load(open('data/employee_data.pkl'))
