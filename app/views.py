@@ -28,9 +28,10 @@ class CaseMan(View):
     def get(self, request):
 
         # context = {''}
-        user = models.User.objects.get(username=self.request.user)
-        mycases = models.CaseManager.objects.filter(responder_id=user.id)
-        new = mycases.filter(status='')
+        #user = models.User.objects.get(username=self.request.user)
+        #mycases = models.CaseManager.objects.filter(responder_id=user.id)
+        #new = mycases.filter(status='open')
+        # print(mycases)
         # pending =
         # closed =
         # context = {'mycases': mycases, 'new_cases': new, 'pending': pending, closed}
@@ -214,6 +215,25 @@ class LoadEmployeesData(View):
                 if citezen.user != citezen1.user:
                     m_fault.reporters.add(citezen)
                     m_fault.save()
+
+        print("creating cases...")
+        faults = models.Fault.objects.all()
+        status = ['closed', 'open', 'pending']
+        reason = ['no resources', 'high risk', 'unable to verify']
+        for fault in faults:
+            stat = status[np.random.randint(0, 3)]
+            reas = ('', reason[np.random.randint(0, 3)])[stat == 'pending']
+            try:
+                employees = models.Employee.objects.filter(
+                    specializations__contains=fault.category)
+                employee = employees[np.random.randint(0, len(employees))]
+                models.CaseManager.objects.create(
+                    fault=fault,
+                    responder=employee,
+                    status=stat,
+                    reason=reas)
+            except:
+                pass
 
         print("DONE: complete.")
 
