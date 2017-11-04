@@ -163,9 +163,9 @@ class LoadEmployeesData(View):
             ).date()
 
             m_fault = models.Fault.objects.create(
-                defect=fault['defect'],
-                category=fault['category'],
-                location=fault['address'],
+                defect=fault['defect'].title(),
+                category=fault['category'].title(),
+                location=fault['address'].title(),
                 date_created=date_created,
                 date_submitted=date_submitted
             )
