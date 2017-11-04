@@ -35,7 +35,7 @@ urlpatterns = [
     url(r'^api/user/', api_views.RegisterCitizen.as_view(),
         name='user'),
     url(r'^api/api_auth/(?P<username>\w+)/(?P<password>.+)/',
-        views.LoginAuth.as_view(), name='api_auth')
+        views.LoginAuth.as_view(), name='api_auth'),
     url(r'^login/$', auth_views.LoginView.as_view(
         template_name='login.html', form_class=forms.LoginForm),
         name='login'),
