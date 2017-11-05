@@ -14,16 +14,10 @@ $(document).ready(function () {
         //var records = recordsJson;
         var records = [];
         //"2014-12-24T00:00:00Z"
-<<<<<<< HEAD
-        var dateFormat = d3.time.format("%Y-%m-%dT%H:%M:%SZ");
-
-        recordsJson.forEach(function (d) {
-=======
         //var dateFormat = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
         var dateFormat = d3.time.format.iso;
         
         recordsJson.forEach(function(d) {
->>>>>>> origin/dev
             var length = d['reporters'].length;
 
             for (var i = 0; i < length; i++) {
