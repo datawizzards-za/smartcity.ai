@@ -36,7 +36,6 @@ class CaseMan(LoginRequiredMixin, View):
         context = {'mycases': mycases,
                    'new_cases': new_cases, 'pending': pending,
                    'closed_cases': closed_cases}
-        print(context)
         return render(request, self.template_name, context)
 
 
@@ -88,7 +87,6 @@ class Schedular(View):
             reporter=kwargs['user'],
             location=kwargs['loc'],
         )
-
         # context = {''}
         return render(request, self.template_name)
 

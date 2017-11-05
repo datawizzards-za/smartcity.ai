@@ -19,36 +19,36 @@
 						</form>
 						<div class="xsmall nav-text-lead text-uppercase text-muted mb10">Navigation</div>
 						<ul class="list-unstyled navigation mb15" id="case_nav">
-							<li class="active">
-								<a href="javascript:;" id="all_cases" class="hvr-grow">
+							<li class="active" id="all_cases">
+								<a href="javascript:;" class="hvr-grow">
 									<span class="ion ion-filing"></span>all {% if mycases %} ({{ mycases|length }}) {% endif %}
 								</a>
 							</li>
-							<li>
-								<a href="javascript:;" id="new_case" class="hvr-grow">
+							<li id="new_case">
+								<a href="javascript:;" class="hvr-grow">
 									<span class="ion ion-filing"></span>new {% if new_cases %} ({{ new_cases|length }}) {% endif %}
 								</a>
 							</li>
-							<li>
-								<a href="javascript:;" id="case_messages" class="hvr-grow">
+							<li id="case_messages">
+								<a href="javascript:;" class="hvr-grow">
 									<span class="ion ion-chatboxes"></span>messages</a>
 							</li>
-							<li>
-								<a href="javascript:;" id="pending_case" class="hvr-grow">
+							<li id="pending_case">
+								<a href="javascript:;" class="hvr-grow">
 									<span class="ion ion-document"></span>pending {% if pending %} ({{ pending|length }}) {% endif %}
 								</a>
 							</li>
-							<li>
-								<a href="javascript:;" id="inprogress_case" class="hvr-grow">
+							<li id="inprogress_case">
+								<a href="javascript:;" class="hvr-grow">
 									<span class="ion ion-paper-airplane"></span>in Progress</a>
 							</li>
-							<li>
-								<a href="javascript:;" id="closed_case" class="hvr-grow">
+							<li id="closed_case">
+								<a href="javascript:;" class="hvr-grow">
 									<span class="ion ion-magnet"></span>closed {% if closed_cases %} ({{ closed_cases|length }}) {% endif %}
 								</a>
 							</li>
-							<li>
-								<a href="javascript:;" id="rejected_case" class="hvr-grow">
+							<li id="rejected_case">
+								<a href="javascript:;" class="hvr-grow">
 									<span class="ion ion-trash-a"></span>rejected</a>
 							</li>
 						</ul>
