@@ -10,73 +10,113 @@
 				<div class="col-md-12 mb30">
 					<!-- tab style -->
 					<div class="clearfix tabs-right tabs-fill">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="#tab-advertised" data-toggle="tab">Advertised</a>
+							</li>
+							<li>
+								<a href="#tab-applications" data-toggle="tab">Applications</a>
+							</li>
+							<li>
+								<a href="#tab-employees" data-toggle="tab">Post new</a>
+							</li>
+						</ul>
 						<div class="tab-content">
-							<div class="row clearfix">
+							<div class="tab-pane active animated rotateInDownRight" id="tab-advertised">
+								<div class="row clearfix">
+									<!-- Data Table -->
+									<div class="col-md-12">
+										<div class="panel panel-lined table-responsive panel-hovered mb20 data-table" style="padding-bottom: 20px">
+											<div class="panel-body">
+												<div class="small text-bold left mt5">
+													Show&nbsp;
+													<select class="lengthSelect">
+														<option value="5">5</option>
+														<option value="10" selected>10</option>
+														<option value="20">20</option>
+														<option value="50">50</option>
+													</select>
+													&nbsp;entries
+												</div>
 
-								<!-- Data Table -->
-								<div class="col-md-12">
-									<div class="panel panel-lined table-responsive panel-hovered mb20 data-table" style="padding-bottom: 20px">
-										<div class="panel-body">
-											<div class="small text-bold left mt5">
-												Show&nbsp;
-												<select class="lengthSelect">
-													<option value="5">5</option>
-													<option value="10" selected>10</option>
-													<option value="20">20</option>
-													<option value="50">50</option>
-												</select>
-												&nbsp;entries
+												<form class="form-horizontal right col-lg-4" action="javascript:;">
+													<input type="text" class="form-control input-sm searchInput has-success" placeholder="Enter keyword">
+												</form>
 											</div>
-
-											<form class="form-horizontal right col-lg-4" action="javascript:;">
-												<input type="text" class="form-control input-sm searchInput has-success" placeholder="Enter keyword">
-											</form>
+											<!-- data table -->
+											<div class="col-md-12 col-sm-12">
+												<table class="table table-hover table-striped">
+													<thead>
+														<tr>
+															<th>
+																Job Title
+																<div class="th">
+																	<i class="fa fa-caret-up icon-up"></i>
+																	<i class="fa fa-caret-down icon-down"></i>
+																</div>
+															</th>
+															<th>
+																Qualifications
+																<div class="th">
+																	<i class="fa fa-caret-up icon-up"></i>
+																	<i class="fa fa-caret-down icon-down"></i>
+																</div>
+															</th>
+															<th>
+																Posted Dated
+																<div class="th">
+																	<i class="fa fa-caret-up icon-up"></i>
+																	<i class="fa fa-caret-down icon-down"></i>
+																</div>
+															</th>
+															<th>
+																Closing Date
+																<div class="th">
+																	<i class="fa fa-caret-up icon-up"></i>
+																	<i class="fa fa-caret-down icon-down"></i>
+																</div>
+															</th>
+														</tr>
+													</thead>
+													<tbody>
+														<!-- data initialize via script, can also be load via ajax -->
+													</tbody>
+												</table>
+											</div>
+											<!-- #end data table -->
 										</div>
-										<!-- data table -->
-										<div class="col-md-12 col-sm-12">
-											<table class="table table-hover table-striped">
-												<thead>
-													<tr>
-														<th>
-															Job Title
-															<div class="th">
-																<i class="fa fa-caret-up icon-up"></i>
-																<i class="fa fa-caret-down icon-down"></i>
-															</div>
-														</th>
-														<th>
-															Qualifications
-															<div class="th">
-																<i class="fa fa-caret-up icon-up"></i>
-																<i class="fa fa-caret-down icon-down"></i>
-															</div>
-														</th>
-														<th>
-															Posted Dated
-															<div class="th">
-																<i class="fa fa-caret-up icon-up"></i>
-																<i class="fa fa-caret-down icon-down"></i>
-															</div>
-														</th>
-														<th>
-															Closing Date
-															<div class="th">
-																<i class="fa fa-caret-up icon-up"></i>
-																<i class="fa fa-caret-down icon-down"></i>
-															</div>
-														</th>
-													</tr>
-												</thead>
-												<tbody>
-													<!-- data initialize via script, can also be load via ajax -->
-												</tbody>
-											</table>
-										</div>
-										<!-- #end data table -->
 									</div>
 								</div>
 							</div>
 							<!-- tab style -->
+							<div class="tab-pane animated rotateInDownRight" id="tab-applications">
+								<div class="row clearfix">
+									<!-- List Groups -->
+									<div class="col-sm-12">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+											<div class="panel-body">
+											</div>
+											<!-- #end panel-body -->
+										</div>
+										<!-- #end panel -->
+									</div>
+									<!-- #end col -->
+								</div>
+							</div>
+							<div class="tab-pane animated rotateInDownRight" id="tab-employees">
+								<div class="row clearfix">
+									<!-- List Groups -->
+									<div class="col-sm-12">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+											<div class="panel-body">
+											</div>
+											<!-- #end panel-body -->
+										</div>
+										<!-- #end panel -->
+									</div>
+									<!-- #end col -->
+								</div>
+							</div>
 						</div>
 						<!-- #end tabs-right -->
 					</div>
