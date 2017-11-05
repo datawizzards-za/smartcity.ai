@@ -52,6 +52,7 @@ class FaultsSerializer(serializers.ModelSerializer):
 
         #address = json.loads(validated_data.get('address'))
         # print(address)
+        image_url = None
         location = validated_data.get('location')
         dataset = models.Fault.objects.create(defect=defect,
                                               category=category,

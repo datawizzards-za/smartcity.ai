@@ -32,7 +32,9 @@ class Fault(models.Model):
     category = models.CharField(max_length=120)
     description = models.TextField(max_length=1000, null=True)
     reporters = models.ManyToManyField(Citizen)
+
     #location = models.ForeignKey(Address, on_delete=models.CASCADE)
+    image_url = models.ImageField(upload_to='images')
     location = models.CharField(max_length=300)
     date_submitted = models.DateTimeField()
     date_created = models.DateField()
