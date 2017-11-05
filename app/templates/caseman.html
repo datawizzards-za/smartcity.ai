@@ -1,4 +1,4 @@
-{% extends "app.layout.html" %} {% block main_content %}
+{% extends "app.layout.html" %} {% block main_content %} {% load staticfiles %}
 <!-- content-here -->
 <div class="content-container animated rotateInDownLeft" id="content">
 	<!-- material page -->
@@ -86,373 +86,37 @@
 					<div class="email-content animated rotateInDownRight" id='all_case_view'>
 						{% include "case.summary.html" %}
 						<!-- email view (in real app, it must be loaded via xhr/json-->
-						<div class="email-view mb15">
-
-							<div class="group clearfix head mb15">
-								<div class="left">
-									<h3 class="text-light mt5">a broken robot</h3>
-									<p>
-										<strong>bokburg</strong>
-									</p>
-								</div>
-								<div class="right">
-									<div class="btn-group mb10 btn-group-sm">
-										<button class="btn btn-default ion ion-trash-a" type="button"></button>
-										<button class="btn btn-default ion ion-arrow-left-c" type="button"></button>
-										<button class="btn btn-default fa ion-arrow-right-c" type="button"></button>
-									</div>
-									<div class="date small text-pink text-bold">Today, {% now 'd M Y' %}</div>
-								</div>
-							</div>
-
-							<div class="email-description">
-								<p>
-									Proin nonummy, lacus eget pulvinar lacinia, pede felis dignissim leo, vitae tristique magna lacus sit amet eros. Nullam ornare.
-									Praesent odio ligula, dapibus sed, tincidunt eget, dictum ac, nibh. Nam quis lacus. Nunc eleifend molestie velit.
-									Morbi lobortis quam eu velit. Donec euismod vestibulum massa. Donec non lectus. Aliquam commodo lacus sit amet nulla.
-								</p>
-								<p>
-									Cras dignissim elit et augue. Nullam non diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-									ac turpis egestas. In hac habitasse platea dictumst. Aenean vestibulum. Sed lobortis elit quis lectus. Nunc sed
-									lacus at augue bibendum dapibus.
-								</p>
-
-								{% load staticfiles %}
-								<div class="image-1 attachment">
-									<img src="{% static 'images/gallery/sample-1.jpg' %}" alt="image-1">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image1.jpg</div>
-								</div>
-								<div class="image-2 attachment">
-									<img src="{% static 'images/gallery/sample-2.jpg' %}" alt="image-2">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image2.jpg</div>
-								</div>
-								<blockquote class="mt15">
-									<p>Reported by </p>
-									<footer>Email
-										<cite title="Source Title">Cell</cite>
-									</footer>
-								</blockquote>
-							</div>
-						</div>
+						{% include "case.body.html" %}
 					</div>
 					<div class="email-content animated rotateInDownRight" id='new_case_view'>
-						<ul class="email-lists list-unstyled clearfix mb30 inprogress_summary_list" id="case_list">
-						</ul>
+						{% include "case.summary.html" %}
 						<!-- email view (in real app, it must be loaded via xhr/json-->
-						<div class="email-view mb15">
-
-							<div class="group clearfix head mb15">
-								<div class="left">
-									<h3 class="text-light mt5" id="case-desc">a broken robot</h3>
-									<p>
-										<strong id="case-location">bokburg</strong>
-									</p>
-								</div>
-								<div class="right">
-									<div class="btn-group mb10 btn-group-sm">
-										<button class="btn btn-default ion ion-trash-a" type="button"></button>
-										<button class="btn btn-default ion ion-arrow-left-c" type="button"></button>
-										<button class="btn btn-default fa ion-arrow-right-c" type="button"></button>
-									</div>
-									<div class="date small text-pink text-bold">Today, {% now 'd M Y' %}</div>
-								</div>
-							</div>
-
-							<div class="email-description">
-								<p>
-									Proin nonummy, lacus eget pulvinar lacinia, pede felis dignissim leo, vitae tristique magna lacus sit amet eros. Nullam ornare.
-									Praesent odio ligula, dapibus sed, tincidunt eget, dictum ac, nibh. Nam quis lacus. Nunc eleifend molestie velit.
-									Morbi lobortis quam eu velit. Donec euismod vestibulum massa. Donec non lectus. Aliquam commodo lacus sit amet nulla.
-								</p>
-								<p>
-									Cras dignissim elit et augue. Nullam non diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-									ac turpis egestas. In hac habitasse platea dictumst. Aenean vestibulum. Sed lobortis elit quis lectus. Nunc sed
-									lacus at augue bibendum dapibus.
-								</p>
-
-								{% load staticfiles %}
-								<div class="image-1 attachment">
-									<img src="{% static 'images/gallery/sample-1.jpg' %}" alt="image-1">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image1.jpg</div>
-								</div>
-								<div class="image-2 attachment">
-									<img src="{% static 'images/gallery/sample-2.jpg' %}" alt="image-2">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image2.jpg</div>
-								</div>
-								<blockquote class="mt15">
-									<p>Reported by </p>
-									<footer>Email
-										<cite title="Source Title">Cell</cite>
-									</footer>
-								</blockquote>
-							</div>
-						</div>
+						{% include "case.body.html" %}
 					</div>
 					<div class="email-content animated rotateInDownRight" id='messaging_view'>
 						{% include "msg.summary.html" %}
 						<!-- email view (in real app, it must be loaded via xhr/json-->
-						<div class="email-view mb15">
-
-							<div class="group clearfix head mb15">
-								<div class="left">
-									<h3 class="text-light mt5">big sinkhole in mid road</h3>
-									<p>
-										<strong>kempton park</strong>
-									</p>
-								</div>
-								<div class="right">
-									<div class="btn-group mb10 btn-group-sm">
-										<button class="btn btn-default ion ion-trash-a" type="button"></button>
-										<button class="btn btn-default ion ion-arrow-left-c" type="button"></button>
-										<button class="btn btn-default fa ion-arrow-right-c" type="button"></button>
-									</div>
-									<div class="date small text-pink text-bold">Today, {% now 'd M Y' %}</div>
-								</div>
-							</div>
-
-							<div class="email-description">
-								<p>
-									Cras dignissim elit et augue. Nullam non diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-									ac turpis egestas. In hac habitasse platea dictumst. Aenean vestibulum. Sed lobortis elit quis lectus. Nunc sed
-									lacus at augue bibendum dapibus.
-								</p>
-								<blockquote class="mt15">
-									<p>Task Ref: </p>
-									<footer>Name
-										<cite title="Source Title">Email, Cell</cite>
-									</footer>
-								</blockquote>
-							</div>
-
-
-							<!-- reply box -->
-							<form class="form-horizontal clearfix" action="javascript:;">
-								<div id="replyBox"></div>
-
-								<button class="btn btn-success btn-sm mt15 right" type="submit">
-									<i class="fa fa-paper-plane"></i>Reply</button>
-							</form>
-						</div>
+						{% include "case.body.html" %}
 					</div>
 					<div class="email-content animated rotateInDownRight" id='pending_case_view'>
 						{% include "case.summary.html" %}
 						<!-- email view (in real app, it must be loaded via xhr/json-->
-						<div class="email-view mb15">
-
-							<div class="group clearfix head mb15">
-								<div class="left">
-									<h3 class="text-light mt5">big sinkhole in mid road</h3>
-									<p>
-										<strong>kempton park</strong>
-									</p>
-								</div>
-								<div class="right">
-									<div class="btn-group mb10 btn-group-sm">
-										<button class="btn btn-default ion ion-trash-a" type="button"></button>
-										<button class="btn btn-default ion ion-arrow-left-c" type="button"></button>
-										<button class="btn btn-default fa ion-arrow-right-c" type="button"></button>
-									</div>
-									<div class="date small text-pink text-bold">Today, {% now 'd M Y' %}</div>
-								</div>
-							</div>
-
-							<div class="email-description">
-								<p>
-									Proin nonummy, lacus eget pulvinar lacinia, pede felis dignissim leo, vitae tristique magna lacus sit amet eros. Nullam ornare.
-									Praesent odio ligula, dapibus sed, tincidunt eget, dictum ac, nibh. Nam quis lacus. Nunc eleifend molestie velit.
-									Morbi lobortis quam eu velit. Donec euismod vestibulum massa. Donec non lectus. Aliquam commodo lacus sit amet nulla.
-								</p>
-								<p>
-									Cras dignissim elit et augue. Nullam non diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-									ac turpis egestas. In hac habitasse platea dictumst. Aenean vestibulum. Sed lobortis elit quis lectus. Nunc sed
-									lacus at augue bibendum dapibus.
-								</p>
-
-								{% load staticfiles %}
-								<div class="image-1 attachment">
-									<img src="{% static 'images/gallery/sample-1.jpg' %}" alt="image-1">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image1.jpg</div>
-								</div>
-								<div class="image-2 attachment">
-									<img src="{% static 'images/gallery/sample-2.jpg' %}" alt="image-2">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image2.jpg</div>
-								</div>
-								<blockquote class="mt15">
-									<p>Reported by </p>
-									<footer>Email
-										<cite title="Source Title">Cell</cite>
-									</footer>
-								</blockquote>
-							</div>
-						</div>
+						{% include "case.body.html" %}
 					</div>
 					<div class="email-content animated rotateInDownRight" id='inprogress_case_view'>
 						{% include "case.summary.html" %}
 						<!-- email view (in real app, it must be loaded via xhr/json-->
-						<div class="email-view mb15">
-
-							<div class="group clearfix head mb15">
-								<div class="left">
-									<h3 class="text-light mt5">big sinkhole in mid road</h3>
-									<p>
-										<strong>kempton park</strong>
-									</p>
-								</div>
-								<div class="right">
-									<div class="btn-group mb10 btn-group-sm">
-										<button class="btn btn-default ion ion-trash-a" type="button"></button>
-										<button class="btn btn-default ion ion-arrow-left-c" type="button"></button>
-										<button class="btn btn-default fa ion-arrow-right-c" type="button"></button>
-									</div>
-									<div class="date small text-pink text-bold">Today, {% now 'd M Y' %}</div>
-								</div>
-							</div>
-
-							<div class="email-description">
-								<p>
-									Proin nonummy, lacus eget pulvinar lacinia, pede felis dignissim leo, vitae tristique magna lacus sit amet eros. Nullam ornare.
-									Praesent odio ligula, dapibus sed, tincidunt eget, dictum ac, nibh. Nam quis lacus. Nunc eleifend molestie velit.
-									Morbi lobortis quam eu velit. Donec euismod vestibulum massa. Donec non lectus. Aliquam commodo lacus sit amet nulla.
-								</p>
-								<p>
-									Cras dignissim elit et augue. Nullam non diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-									ac turpis egestas. In hac habitasse platea dictumst. Aenean vestibulum. Sed lobortis elit quis lectus. Nunc sed
-									lacus at augue bibendum dapibus.
-								</p>
-
-								{% load staticfiles %}
-								<div class="image-1 attachment">
-									<img src="{% static 'images/gallery/sample-1.jpg' %}" alt="image-1">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image1.jpg</div>
-								</div>
-								<div class="image-2 attachment">
-									<img src="{% static 'images/gallery/sample-2.jpg' %}" alt="image-2">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image2.jpg</div>
-								</div>
-								<blockquote class="mt15">
-									<p>Reported by </p>
-									<footer>Email
-										<cite title="Source Title">Cell</cite>
-									</footer>
-								</blockquote>
-							</div>
-						</div>
+						{% include "case.body.html" %}
 					</div>
 					<div class="email-content animated rotateInDownRight" id='closed_case_view'>
 						{% include "case.summary.html" %}
 						<!-- email view (in real app, it must be loaded via xhr/json-->
-						<div class="email-view mb15">
-
-							<div class="group clearfix head mb15">
-								<div class="left">
-									<h3 class="text-light mt5">big sinkhole in mid road</h3>
-									<p>
-										<strong>kempton park</strong>
-									</p>
-								</div>
-								<div class="right">
-									<div class="btn-group mb10 btn-group-sm">
-										<button class="btn btn-default ion ion-trash-a" type="button"></button>
-										<button class="btn btn-default ion ion-arrow-left-c" type="button"></button>
-										<button class="btn btn-default fa ion-arrow-right-c" type="button"></button>
-									</div>
-									<div class="date small text-pink text-bold">Today, {% now 'd M Y' %}</div>
-								</div>
-							</div>
-
-							<div class="email-description">
-								<p>
-									Proin nonummy, lacus eget pulvinar lacinia, pede felis dignissim leo, vitae tristique magna lacus sit amet eros. Nullam ornare.
-									Praesent odio ligula, dapibus sed, tincidunt eget, dictum ac, nibh. Nam quis lacus. Nunc eleifend molestie velit.
-									Morbi lobortis quam eu velit. Donec euismod vestibulum massa. Donec non lectus. Aliquam commodo lacus sit amet nulla.
-								</p>
-								<p>
-									Cras dignissim elit et augue. Nullam non diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-									ac turpis egestas. In hac habitasse platea dictumst. Aenean vestibulum. Sed lobortis elit quis lectus. Nunc sed
-									lacus at augue bibendum dapibus.
-								</p>
-
-								{% load staticfiles %}
-								<div class="image-1 attachment">
-									<img src="{% static 'images/gallery/sample-1.jpg' %}" alt="image-1">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image1.jpg</div>
-								</div>
-								<div class="image-2 attachment">
-									<img src="{% static 'images/gallery/sample-2.jpg' %}" alt="image-2">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image2.jpg</div>
-								</div>
-								<blockquote class="mt15">
-									<p>Reported by </p>
-									<footer>Email
-										<cite title="Source Title">Cell</cite>
-									</footer>
-								</blockquote>
-							</div>
-						</div>
+						{% include "case.body.html" %}
 					</div>
 					<div class="email-content animated rotateInDownRight" id='rejected_case_view'>
 						{% include "case.summary.html" %}
 						<!-- email view (in real app, it must be loaded via xhr/json-->
-						<div class="email-view mb15">
-
-							<div class="group clearfix head mb15">
-								<div class="left">
-									<h3 class="text-light mt5">big sinkhole in mid road</h3>
-									<p>
-										<strong>kempton parksss</strong>
-									</p>
-								</div>
-								<div class="right">
-									<div class="btn-group mb10 btn-group-sm">
-										<button class="btn btn-default ion ion-trash-a" type="button"></button>
-										<button class="btn btn-default ion ion-arrow-left-c" type="button"></button>
-										<button class="btn btn-default fa ion-arrow-right-c" type="button"></button>
-									</div>
-									<div class="date small text-pink text-bold">Today, {% now 'd M Y' %}</div>
-								</div>
-							</div>
-
-							<div class="email-description">
-								<p>
-									Proin nonummy, lacus eget pulvinar lacinia, pede felis dignissim leo, vitae tristique magna lacus sit amet eros. Nullam ornare.
-									Praesent odio ligula, dapibus sed, tincidunt eget, dictum ac, nibh. Nam quis lacus. Nunc eleifend molestie velit.
-									Morbi lobortis quam eu velit. Donec euismod vestibulum massa. Donec non lectus. Aliquam commodo lacus sit amet nulla.
-								</p>
-								<p>
-									Cras dignissim elit et augue. Nullam non diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-									ac turpis egestas. In hac habitasse platea dictumst. Aenean vestibulum. Sed lobortis elit quis lectus. Nunc sed
-									lacus at augue bibendum dapibus.
-								</p>
-
-								{% load staticfiles %}
-								<div class="image-1 attachment">
-									<img src="{% static 'images/gallery/sample-1.jpg' %}" alt="image-1">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image1.jpg</div>
-								</div>
-								<div class="image-2 attachment">
-									<img src="{% static 'images/gallery/sample-2.jpg' %}" alt="image-2">
-									<div class="text">
-										<i class="ion ion-paperclip"></i>&nbsp; image2.jpg</div>
-								</div>
-								<blockquote class="mt15">
-									<p>Reported by </p>
-									<footer>Email
-										<cite title="Source Title">Cell</cite>
-									</footer>
-								</blockquote>
-							</div>
-						</div>
+						{% include "case.body.html" %}
 					</div>
 				</div>
 				<!-- #end row -->
@@ -465,4 +129,4 @@
 </div>
 <!-- #end main-container -->
 {% endblock main_content %} {% block extra_js %}
-<script src="{% static 'scripts/caseman.js' %}"></script> {% endblock %}
+<script src="{% static 'scripts/caseman.js' %}"></script> {% endblock extra_js %}
