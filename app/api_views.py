@@ -77,5 +77,5 @@ class GetClientAddress(generics.ListCreateAPIView):
 
 
 class GetVacancies(generics.ListAPIView):
-    queryset = models.Vacancy.objects.all()
+    queryset = models.Vacancy.objects.all().order_by('posting_date')
     serializer_class = serializers.VacancySerializer

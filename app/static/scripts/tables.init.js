@@ -20,7 +20,6 @@ jQuery(function () {
                 vacancies = data;
             }
         });
-        console.log(vacancies);
         for (var $dataTable = $(".data-table"), $table = $dataTable.find("table"), vacancies,
             prelength = vacancies.length, i = prelength; 10 > i; i++) { vacancies; }
 
