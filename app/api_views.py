@@ -49,10 +49,8 @@ class GetAllCases(generics.ListAPIView):
 
 
 class GetEmployees(generics.ListAPIView):
-    serializers = serializers.EmployeeSerializer
-
-    def get_queryset(self):
-        return models.Employee.objects.all()
+    queryset = models.Employee.objects.all()
+    serializer_class = serializers.EmployeeSerializer
 
 
 class GetUser(generics.ListAPIView):
@@ -61,6 +59,14 @@ class GetUser(generics.ListAPIView):
     def get_queryset(self):
         username = self.kwargs['username']
         return User.objects.filter(username=username)
+
+
+class GetEmployee(generics.ListAPIView):
+    serializer_class = serializers.EmployeeSerializer
+
+    def get_queryset(self):
+        emp_id = self.kwargs['emp_id']
+        return models.Employee.objects.filter(pk=int(emp_id))
 
 
 class GetClientAddress(generics.ListCreateAPIView):

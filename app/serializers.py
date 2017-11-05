@@ -93,6 +93,14 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
+class EmployeeSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = models.Employee
+        fields = ['user', 'job_title', 'specializations', 'job_desc', 'cell']
+
+
 class CitizenSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
 

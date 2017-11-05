@@ -142,7 +142,7 @@ $(document).ready(function () {
             dc.redrawAll();
         });
 
-        d3.selectAll('a#reset-submittedChart').on('click', function () {
+        d3.selectAll('a#reset-submitted').on('click', function () {
             submittedChart.filterAll();
             dc.redrawAll();
         });
@@ -170,20 +170,50 @@ $(document).ready(function () {
 
 
     function makeCasesGraphs(recordsJson) {
+
+        recordsJson.forEach(function(d) {
+            var emp = getUser(parseInt(d["responder"]));
+            d['job_title'] = emp['job_title'];
+            var user = emp['user'];
+            d['emp_name'] = user['first_name'] + " " + user['last_name'];
+        });
+
+
+        function getUser(userId) {
+            var url = document.location.origin + "/app/api/get_employee/" + userId + "/";
+            var result = null;
+
+            $.ajax({
+                url: url,
+                async: false,
+                success: function(data) {
+                    result = data;
+                }
+            });
+
+            return result[0];
+        }
+
         //Create a Crossfilter instance
         var ndx = crossfilter(recordsJson);
 
         var reasonDim = ndx.dimension(function(d) { return d["reason"]; });
         var statusDim = ndx.dimension(function(d) { return d["status"]; });
+        var nameDim = ndx.dimension(function(d) { return d["emp_name"]; });
+        var titleDim = ndx.dimension(function(d) { return d["job_title"]; });
         var allDim = ndx.dimension(function(d) {return d;});
 
         var reasonGroup = reasonDim.group();
         var statusGroup = statusDim.group();
+        var nameGroup = nameDim.group();
+        var titleGroup = titleDim.group();
         var all = ndx.groupAll();
 
         var numberRecordsND = dc.numberDisplay("#number-records-nd1");
         var reasonChart = dc.rowChart("#reason-chart");
         var statusChart = dc.pieChart("#status-chart");
+        var nameChart = dc.rowChart("#name-chart");
+        var titleChart = dc.rowChart("#job-title-chart");
 
         numberRecordsND
             .formatNumber(d3.format("d"))
@@ -205,10 +235,47 @@ $(document).ready(function () {
             .dimension(reasonDim)
             .group(reasonGroup)
             .ordering(function(d) { return -d.value })
-            //.colors(['#6baed6'])
+            .elasticX(true)
+            .xAxis().ticks(4);
+
+        nameChart
+            .data(function(group) { return group.top(10); })
+            .width(300)
+            .height(390)
+            .dimension(nameDim)
+            .group(nameGroup)
+            .ordering(function(d) { return -d.value })
+            .elasticX(true)
+            .xAxis().ticks(4);
+
+        titleChart
+            .data(function(group) { return group.top(10); })
+            .width(300)
+            .height(390)
+            .dimension(titleDim)
+            .group(titleGroup)
+            .ordering(function(d) { return -d.value })
             .elasticX(true)
             .xAxis().ticks(4);
 
         dc.renderAll();
+        
+        // Reset plots
+        /**
+        d3.selectAll('a#reset-all-').on('click', function () {
+            dc.filterAll();
+            dc.redrawAll();
+        });
+
+        d3.selectAll('a#reset-submitted').on('click', function () {
+            submittedChart.filterAll();
+            dc.redrawAll();
+        });
+
+        d3.selectAll('a#reset-category').on('click', function () {
+            categoryChart.filterAll();
+            dc.redrawAll();
+        });
+        */
     }
 });

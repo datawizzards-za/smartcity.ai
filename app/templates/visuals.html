@@ -16,9 +16,6 @@
 								<a href="#tab-faults" data-toggle="tab">faults</a>
 							</li>
 							<li>
-								<a href="#tab-reporters" data-toggle="tab">reporters</a>
-							</li>
-							<li>
 								<a href="#tab-employee" data-toggle="tab">employees</a>
 							</li>
 						</ul>
@@ -122,24 +119,10 @@
 								</div>
 
 							</div>
-							<div class="tab-pane animated rotateInDownRight" id="tab-reporters">
-								<div class="row clearfix">
-									<!-- List Groups -->
-									<div class="col-sm-12">
-										<div class="panel panel-default panel-hovered panel-stacked mb30">
-											<div class="panel-body">
-
-											</div>
-										</div>
-										<!-- #end panel -->
-									</div>
-									<!-- #end col -->
-								</div>
-							</div>
 							<div class="tab-pane animated rotateInDownRight" id="tab-employee">
 								<div class="row clearfix">
 									<!-- Data Table -->
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<div class="panel panel-default panel-hovered panel-stacked mb30">
                       <div class="panel-heading">
                         <span>Status</span>
@@ -163,6 +146,34 @@
 											</div>
 											<div class="panel-body">
                         <div id="reason-chart"></div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+                      <div class="panel-heading">
+                        <span>Employee Name</span>
+                        <small class="pull-right">
+                          <a id="reset-name" href="#">reset</a>
+                        </small>
+                      </div>
+											<div class="panel-body">
+                        <div id="name-chart"></div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="panel panel-default panel-hovered panel-stacked mb30">
+                      <div class="panel-heading">
+                        <span>Employee Job Title</span>
+                        <small class="pull-right">
+                          <a id="reset-title" href="#">reset</a>
+                        </small>
+                      </div>
+											<div class="panel-body">
+                        <div id="job-title-chart"></div>
 											</div>
 										</div>
 									</div>
