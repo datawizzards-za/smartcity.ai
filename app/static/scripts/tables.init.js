@@ -20,12 +20,16 @@ jQuery(function () {
                 vacancies = data;
             }
         });
+
         console.log(vacancies);
+
         for (var $dataTable = $(".data-table"), $table = $dataTable.find("table"), vacancies,
             prelength = vacancies.length, i = prelength; 10 > i; i++) { vacancies; }
 
         var table = $table.DataTable({
-            data: vacancies, columns: [{ data: "title" }, { data: "qualifications" }, { data: "posting_date" }, { data: "closing_date" }],
+            data: vacancies, columns: [{ data: "title" },
+            { data: "qualifications" }, { data: "posting_date" },
+            { data: "closing_date" }],
             searching: !0, dom: "rtip", pageLength: 5
         });
 

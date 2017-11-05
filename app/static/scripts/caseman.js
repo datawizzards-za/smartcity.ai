@@ -9,6 +9,13 @@ $(document).ready(function () {
             mycases = data;
         }
     });
+    
+    $('#parent_case div#all_case_view').attr("class", "email-content animated rotateInDownRight");
+
+        $('#parent_case ul#case_list').empty();
+        for (i = 0; i < mycases.length; i++) {
+            $('#parent_case ul#case_list').append(addLi(mycases[i].fault));
+        }
 
     $('#parent_case ul#case_nav').on('click', 'li#all_cases', function () {
         $('#new_case_view').hide();
@@ -28,12 +35,12 @@ $(document).ready(function () {
     });
 
     $('#parent_case ul#case_nav').on('click', 'li#new_case', function () {
+        $('#all_case_view').hide();
         $('#pending_case_view').hide();
         $('#messaging_view').hide();
         $('#inprogress_case_view').hide();
         $('#closed_case_view').hide();
         $('#rejected_case_view').hide();
-        $('#all_case_view').hide();
         
         $('#parent_case div#new_case_view').attr("class", "email-content animated rotateInDownRight");
         $('#new_case_view').show();
@@ -42,8 +49,6 @@ $(document).ready(function () {
         for (i = 0; i < mycases.length; i++) {
             if (mycases[i].status == 'open') {
                 $('#parent_case ul#case_list').append(addLi(mycases[i].fault));
-                //console.log(mycases[i])
-                //console.log(mycases[i].fault)
             }
         }
     });
@@ -92,7 +97,7 @@ $(document).ready(function () {
     });
 
     function addLi(fault) {
-        return '<li class="active"> <a href="javascript:;">' +
+        return '<li class="hvr-grow"> <a href="javascript:;">' +
             '<div class="group clearfix small">' +
             '<span class="sender-name left text-bold">' + fault.category + '</span>' +
             '<span class="email-date right xsmall mt1 text-pink">' + fault.date_submitted.slice(0, 10)
