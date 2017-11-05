@@ -36,7 +36,6 @@ class CaseMan(LoginRequiredMixin, View):
         context = {'mycases': mycases,
                    'new_cases': new_cases, 'pending': pending,
                    'closed_cases': closed_cases}
-        print(context)
         return render(request, self.template_name, context)
 
 
