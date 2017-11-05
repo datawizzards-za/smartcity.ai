@@ -34,7 +34,7 @@ class Fault(models.Model):
     reporters = models.ManyToManyField(Citizen)
 
     #location = models.ForeignKey(Address, on_delete=models.CASCADE)
-    image_url = models.ImageField(upload_to='images')
+    #image_url = models.ImageField(upload_to='images')
     location = models.CharField(max_length=300)
     date_submitted = models.DateTimeField()
     date_created = models.DateField()

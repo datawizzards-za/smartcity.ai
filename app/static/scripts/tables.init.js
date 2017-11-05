@@ -30,7 +30,7 @@ jQuery(function () {
             data: vacancies, columns: [{ data: "title" },
             { data: "qualifications" }, { data: "posting_date" },
             { data: "closing_date" }],
-            searching: !0, dom: "rtip", pageLength: 5
+            searching: !0, dom: "rtip", pageLength: 13
         });
         console.log(table);
 
