@@ -72,7 +72,7 @@ $(document).ready(function () {
             .group(all);
 
         submittedChart
-            .width(1500)
+            .width(1560)
             .height(395)
             .margins({ top: 10, right: 50, bottom: 40, left: 40 })
             .dimension(submittedDim)
