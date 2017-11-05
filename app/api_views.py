@@ -59,6 +59,14 @@ class GetUser(generics.ListAPIView):
     def get_queryset(self):
         username = self.kwargs['username']
         return User.objects.filter(username=username)
+    
+
+class GetCitizen(generics.ListAPIView):
+    serializer_class = serializers.CitizenSerializer
+
+    def get_queryset(self):
+        citizen_id = int(self.kwargs['citizen_id'])
+        return models.Citizen.objects.filter(pk=citizen_id)
 
 
 class GetEmployee(generics.ListAPIView):

@@ -23,6 +23,34 @@ $(document).ready(function () {
         var case_dt = new Date(mycase.fault.date_submitted.slice(0, 10)).toDateString()
         $("#parent_case h3#case-desc").html(desc);
         $("#parent_case div#case_date").html(case_dt);
+
+        var reporters = "";
+
+        $.each(mycase.fault.reporters, function(index, reporter){
+            var url = document.location.origin + "/app/api/get_citizen/" + reporter + "/";
+            var reporter = null;
+            $.ajax({
+                url: url,
+                async: false,
+                success: function(data) {
+                    reporter = data[0];
+                }  
+            });
+
+           var first_name = reporter.user.first_name; 
+           var last_name = reporter.user.last_name; 
+           var name = first_name + " " + last_name;
+           var email = reporter.user.email;
+           var cell = reporter.cell;
+           var value = '<footer>' + 
+                '<cite title="Name"><strong>' + name + '&nbsp;&nbsp;&nbsp;</strong></cite>'+
+                '<cite title="Email">'+ email + '&nbsp;&nbsp;&nbsp;</cite>' +
+                '<cite title="Cell">'+ cell + '&nbsp;&nbsp;&nbsp;</cite>' +
+            '</footer>\n';
+            reporters += value;
+        });
+
+        $("#parent_case div#case-reporters").html(reporters);
     }
 
     $('#parent_case ul#case_nav').on('click', 'li#all_cases', function () {
@@ -83,7 +111,6 @@ $(document).ready(function () {
         $('#messaging_view').hide();
         $('#rejected_case_view').hide();
         $('#all_case_view').hide();
-
 
         $('#parent_case div#closed_case_view').attr("class", "email-content animated rotateInDownRight");
         $('#closed_case_view').show();

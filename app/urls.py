@@ -37,6 +37,8 @@ urlpatterns = [
         name='personal'),
     url(r'^api/get_employee/(?P<emp_id>\d+)/', api_views.GetEmployee.as_view(),
         name='get_employee'),
+    url(r'^api/get_citizen/(?P<citizen_id>\d+)/', api_views.GetCitizen.as_view(),
+        name='get_citizen'),
     url(r'^api/user/', api_views.RegisterCitizen.as_view(),
         name='user'),
     url(r'^api/api_auth/(?P<username>\w+)/(?P<password>.+)/',
