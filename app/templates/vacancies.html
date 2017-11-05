@@ -1,5 +1,6 @@
 {% extends "app.layout.html" %} {% block main_content %}
 <!-- content-here -->
+{% load staticfiles %}
 <div class="content-container animated rotateInDownLeft" id="content">
 	<div class="page page-ui-tabs">
 		<div class="page-wrap">
@@ -111,4 +112,5 @@
 			<!-- #end page -->
 		</div>
 		<!-- #end content-container -->
-		{% endblock main_content %}
+		{% endblock main_content %} {% block extra_js %}
+		<script src="{% static 'scripts/vacancies.js' %}"></script> {% endblock %}

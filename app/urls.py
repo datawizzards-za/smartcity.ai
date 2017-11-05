@@ -21,6 +21,7 @@ urlpatterns = [
         name='create_citizen'),
     url(r'^api/faults/(?P<reporter>\w+)/', api_views.GetFaultsByReporter.as_view(),
         name='faults'),
+    url(r'^api/get_vacancies/', api_views.GetVacancies.as_view(), name='get_vancies'),
     url(r'^api/get_all_faults/$', api_views.GetAllFaults.as_view(),
         name='get_all_faults'),
     # url(r'^casemanager/(?P<responder>\w+)/', api_views.GetFaultsByReporter.as_view(),

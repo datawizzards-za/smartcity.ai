@@ -10,16 +10,22 @@ jQuery(function () {
         })
     }
     function initDataTable() {
-        for (var $dataTable = $(".data-table"),
-            $table = $dataTable.find("table"),
-            datas = [{ engine: "Gecko", browser: "Firefox 3.0", platform: "Win 98+/OSX.2+" },
-            { engine: "Presto", browser: "Opera 8.0", platform: "Win 95+/OS.2+" },
-            { engine: "Trident", browser: "IE 6", platform: "Win 98+" },
-            { engine: "Webkit", browser: "iPod Touch / iPhone", platform: "OSX.4+" }],
-            prelength = datas.length, i = prelength; 10 > i; i++) { var rand = Math.floor(Math.random() * prelength); datas.push(datas[rand]) }
+        var vancies_url = document.location.origin + '/app/api/get_vacancies/';
+        var vacancies = null;
+        $.ajax({
+            url: vancies_url,
+            type: 'GET',
+            async: false,
+            success: function (data) {
+                vacancies = data;
+            }
+        });
+        console.log(vacancies);
+        for (var $dataTable = $(".data-table"), $table = $dataTable.find("table"), vacancies,
+            prelength = vacancies.length, i = prelength; 10 > i; i++) { vacancies; }
 
         var table = $table.DataTable({
-            data: datas, columns: [{ data: "engine" }, { data: "browser" }, { data: "platform" }],
+            data: vacancies, columns: [{ data: "title" }, { data: "closing_date" }, { data: "closing_date" }],
             searching: !0, dom: "rtip", pageLength: 5
         });
 

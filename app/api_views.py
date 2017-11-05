@@ -68,3 +68,8 @@ class GetClientAddress(generics.ListCreateAPIView):
 
     def get_queryset(self):
         return models.Address.objects.all()
+
+
+class GetVacancies(generics.ListAPIView):
+    queryset = models.Vacancy.objects.all()
+    serializer_class = serializers.VacancySerializer

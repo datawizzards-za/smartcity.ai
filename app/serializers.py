@@ -24,6 +24,13 @@ class AddressSerializer(serializers.ModelSerializer):
         return dataset
 
 
+class VacancySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Vacancy
+        fields = ['title', 'description', 'skills',
+                  'qualifications', 'posting_date', 'closing_date']
+
+
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Employee
