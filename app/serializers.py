@@ -50,9 +50,9 @@ class FaultsSerializer(serializers.ModelSerializer):
         reporters = models.Citizen.objects.all(
             user__username=validated_data.get('reporters'))
 
-        #address = json.loads(validated_data.get('address'))
+        # address = json.loads(validated_data.get('address'))
         # print(address)
-        image_url = None
+        # image_url = validated_data.get(
         location = validated_data.get('location')
         dataset = models.Fault.objects.create(defect=defect,
                                               category=category,

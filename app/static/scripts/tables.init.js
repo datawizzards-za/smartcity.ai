@@ -21,7 +21,10 @@ jQuery(function () {
             }
         });
         for (var $dataTable = $(".data-table"), $table = $dataTable.find("table"), vacancies,
-            prelength = vacancies.length, i = prelength; 10 > i; i++) { vacancies; }
+            prelength = vacancies.length, i = prelength; 10 > i; i++) {
+            //vacancies;
+            console.log(vacancies);
+        }
 
         var table = $table.DataTable({
             data: vacancies, columns: [{ data: "title" },
@@ -29,6 +32,7 @@ jQuery(function () {
             { data: "closing_date" }],
             searching: !0, dom: "rtip", pageLength: 5
         });
+        console.log(table);
 
         $dataTable.find(".searchInput").on("keyup", function () {
             table.search(this.value).draw()
