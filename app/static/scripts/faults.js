@@ -243,7 +243,7 @@ $(document).ready(function () {
         titleChart
             .data(function (group) { return group.top(10); })
             .width(300)
-            .height(390)
+            .height(180)
             .dimension(titleDim)
             .group(titleGroup)
             .ordering(function (d) { return -d.value })
@@ -253,21 +253,29 @@ $(document).ready(function () {
         dc.renderAll();
 
         // Reset plots
-        /**
-        d3.selectAll('a#reset-all-').on('click', function () {
+        d3.selectAll('a#reset-all1').on('click', function () {
             dc.filterAll();
             dc.redrawAll();
         });
 
-        d3.selectAll('a#reset-submitted').on('click', function () {
-            submittedChart.filterAll();
+        d3.selectAll('a#reset-status').on('click', function () {
+            statusChart.filterAll();
             dc.redrawAll();
         });
 
-        d3.selectAll('a#reset-category').on('click', function () {
-            categoryChart.filterAll();
+        d3.selectAll('a#reset-name').on('click', function () {
+            nameChart.filterAll();
             dc.redrawAll();
         });
-        */
+
+        d3.selectAll('a#reset-reason').on('click', function () {
+            reasonChart.filterAll();
+            dc.redrawAll();
+        });
+
+        d3.selectAll('a#reset-title').on('click', function () {
+            titleChart.filterAll();
+            dc.redrawAll();
+        });
     }
 });
