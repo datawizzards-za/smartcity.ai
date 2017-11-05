@@ -71,9 +71,9 @@ $(document).ready(function () {
     });
 
     $('#parent_case ul#case_list').on('click', 'li', function () {
+        $("#parent_case div#case-body").toggleClass('mail-view mb15 animated bounceIn');
         var index = parseInt($(this).val());
         caseDetails(mycases[index]);
-        console.log(mycases[index]);
     });
 
     $('#parent_case ul#case_nav').on('click', 'li#closed_case', function () {
