@@ -11,13 +11,11 @@ $(document).ready(function () {
 
     function makeFaultsGraphs(recordsJson) {
         //Clean data
-        //var records = recordsJson;
         var records = [];
-        //"2014-12-24T00:00:00Z"
         //var dateFormat = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
         var dateFormat = d3.time.format.iso;
 
-        recordsJson.forEach(function (d) {
+        recordsJson.forEach(function(d) {
             var length = d['reporters'].length;
 
             for (var i = 0; i < length; i++) {
