@@ -35,7 +35,7 @@ class CaseMan(LoginRequiredMixin, View):
         closed_cases = mycases.filter(status='closed')
         context = {'mycases': mycases,
                    'new_cases': new_cases, 'pending': pending,
-                   'closed_cases': closed_cases}
+                   'closed_cases': closed_cases, 'user': emp}
         return render(request, self.template_name, context)
 
 

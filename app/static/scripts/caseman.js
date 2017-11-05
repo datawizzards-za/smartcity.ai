@@ -12,12 +12,6 @@ $(document).ready(function () {
 
     $('#parent_case div#all_case_view').attr("class", "email-content animated rotateInDownRight");
 
-    $('#parent_case ul#case_list').empty();
-    for (i = 0; i < mycases.length; i++) {
-        $('#parent_case ul#case_list').append(addLi(mycases[i].fault));
-    }
-
-
     addCases('all');
     caseDetails(mycases[0]);
 
@@ -26,7 +20,9 @@ $(document).ready(function () {
         var status = mycase.status;
         status = status[0].toUpperCase() + status.slice(1);
         var desc = "<strong>" + status + "</strong>  " + mycase.fault.category + " " + mycase.fault.defect;
+        var case_dt = new Date(mycase.fault.date_submitted.slice(0, 10)).toDateString()
         $("#parent_case h3#case-desc").html(desc);
+        $("#parent_case div#case_date").html(case_dt);
     }
 
     $('#parent_case ul#case_nav').on('click', 'li#all_cases', function () {
@@ -97,21 +93,27 @@ $(document).ready(function () {
     });
 
     function addCases(status) {
+        var elem = null;
         $('#parent_case ul#case_list').empty();
         for (i = 0; i < mycases.length; i++) {
             if (mycases[i].status == status || status == 'all') {
+                if (!elem) {
+                    elem = mycases[i];
+                }
                 $('#parent_case ul#case_list').append(addLi(mycases[i].fault, i));
                 //console.log(mycases[i])
                 //console.log(mycases[i].fault)
             }
         }
+        caseDetails(elem);
     }
 
     function addLi(fault, index) {
-        return '<li value=' + index + '> <a href="javascript:;">' +
+        var case_dt = new Date(fault.date_submitted.slice(0, 10)).toDateString()
+        return '<li class="hvr-grow" value=' + index + '> <a href="javascript:;">' +
             '<div class="group clearfix small">' +
             '<span class="sender-name left text-bold">' + fault.category + '</span>' +
-            '<span class="email-date right xsmall mt1 text-pink">' + fault.date_submitted.slice(0, 10)
+            '<span class="email-date right xsmall mt1 text-pink">' + case_dt
             + '</span>' +
             '</div >' +
             '<p class="subject">' + fault.defect + '</p>' +
