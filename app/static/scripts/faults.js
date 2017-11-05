@@ -5,8 +5,8 @@ $(document).ready(function () {
         .awaitAll(handleData);
 
     function handleData(error, data) {
-       makeFaultsGraphs(data[0]);
-       makeCasesGraphs(data[1]);
+        makeFaultsGraphs(data[0]);
+        makeCasesGraphs(data[1]);
     }
 
     function makeFaultsGraphs(recordsJson) {
@@ -14,16 +14,10 @@ $(document).ready(function () {
         //var records = recordsJson;
         var records = [];
         //"2014-12-24T00:00:00Z"
-<<<<<<< HEAD
-        var dateFormat = d3.time.format("%Y-%m-%dT%H:%M:%SZ");
-
-        recordsJson.forEach(function (d) {
-=======
         //var dateFormat = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
         var dateFormat = d3.time.format.iso;
-        
-        recordsJson.forEach(function(d) {
->>>>>>> origin/dev
+
+        recordsJson.forEach(function (d) {
             var length = d['reporters'].length;
 
             for (var i = 0; i < length; i++) {
@@ -171,7 +165,7 @@ $(document).ready(function () {
 
     function makeCasesGraphs(recordsJson) {
 
-        recordsJson.forEach(function(d) {
+        recordsJson.forEach(function (d) {
             var emp = getUser(parseInt(d["responder"]));
             d['job_title'] = emp['job_title'];
             var user = emp['user'];
@@ -186,7 +180,7 @@ $(document).ready(function () {
             $.ajax({
                 url: url,
                 async: false,
-                success: function(data) {
+                success: function (data) {
                     result = data;
                 }
             });
@@ -197,11 +191,11 @@ $(document).ready(function () {
         //Create a Crossfilter instance
         var ndx = crossfilter(recordsJson);
 
-        var reasonDim = ndx.dimension(function(d) { return d["reason"]; });
-        var statusDim = ndx.dimension(function(d) { return d["status"]; });
-        var nameDim = ndx.dimension(function(d) { return d["emp_name"]; });
-        var titleDim = ndx.dimension(function(d) { return d["job_title"]; });
-        var allDim = ndx.dimension(function(d) {return d;});
+        var reasonDim = ndx.dimension(function (d) { return d["reason"]; });
+        var statusDim = ndx.dimension(function (d) { return d["status"]; });
+        var nameDim = ndx.dimension(function (d) { return d["emp_name"]; });
+        var titleDim = ndx.dimension(function (d) { return d["job_title"]; });
+        var allDim = ndx.dimension(function (d) { return d; });
 
         var reasonGroup = reasonDim.group();
         var statusGroup = statusDim.group();
@@ -217,7 +211,7 @@ $(document).ready(function () {
 
         numberRecordsND
             .formatNumber(d3.format("d"))
-            .valueAccessor(function(d){return d; })
+            .valueAccessor(function (d) { return d; })
             .group(all);
 
         statusChart
@@ -229,37 +223,37 @@ $(document).ready(function () {
             .innerRadius(20);
 
         reasonChart
-            .data(function(group) { return group.top(10); })
+            .data(function (group) { return group.top(10); })
             .width(300)
             .height(390)
             .dimension(reasonDim)
             .group(reasonGroup)
-            .ordering(function(d) { return -d.value })
+            .ordering(function (d) { return -d.value })
             .elasticX(true)
             .xAxis().ticks(4);
 
         nameChart
-            .data(function(group) { return group.top(10); })
+            .data(function (group) { return group.top(10); })
             .width(300)
             .height(390)
             .dimension(nameDim)
             .group(nameGroup)
-            .ordering(function(d) { return -d.value })
+            .ordering(function (d) { return -d.value })
             .elasticX(true)
             .xAxis().ticks(4);
 
         titleChart
-            .data(function(group) { return group.top(10); })
+            .data(function (group) { return group.top(10); })
             .width(300)
             .height(390)
             .dimension(titleDim)
             .group(titleGroup)
-            .ordering(function(d) { return -d.value })
+            .ordering(function (d) { return -d.value })
             .elasticX(true)
             .xAxis().ticks(4);
 
         dc.renderAll();
-        
+
         // Reset plots
         /**
         d3.selectAll('a#reset-all-').on('click', function () {
