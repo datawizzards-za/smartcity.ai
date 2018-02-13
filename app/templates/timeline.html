@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<!-- dashboard page -->
+{% block container %}
+<div class="page page-dashboard">
+
+	<div class="page-wrap">
+
+		<div class="row">
+			<!-- dashboard header -->
+			<div class="col-md-12">
+				<div class="dash-head clearfix mt15 mb20">
+					<div class="left">
+						<h4 class="mb5 text-light">Welcome to Sasfin Compaign</h4>
+						<p class="small"><strong>Let's</strong> See analytics</p>
+					</div>
+					<div class="right mt10">
+						<span data-Type="bar" data-BarColor="#4CAF50" class="sparkline">10,8,4,10,7,0,3,4,6,5,9,12,9</span>
+						<h5 class="text-bold mb0 mt5">$1,33,404</h5>
+					</div>
+				</div>
+			</div>
+		</div> <!-- #end row -->
+
+		<!-- mini boxes -->
+		<div class="row">
+			<div class="col-md-3 col-sm-6">
+				<div class="panel panel-default mb20 mini-box panel-hovered">
+					<div class="panel-body">
+						<div class="clearfix">
+							<div class="info left">
+								<h4 class="mt0 text-primary text-bold">200</h4>
+								<h5 class="text-light mb0">Call Center Calls</h5>
+							</div>
+							<div class="right ion ion-ios-telephone-outline icon"></div>
+						</div>
+					</div>
+					<div class="panel-footer clearfix panel-footer-sm panel-footer-primary">
+						<p class="mt0 mb0 left">% change</p>
+						<span class="sparkline right" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">10,8,9,3,5,8,5</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="panel panel-default mb20 mini-box panel-hovered">
+					<div class="panel-body">
+						<div class="clearfix">
+							<div class="info left">
+								<h4 class="mt0 text-success text-bold">320K+</h4>
+								<h5 class="text-light mb0">Ads Views</h5>
+							</div>
+							<div class="right ion ion-eye icon"></div>
+						</div>
+					</div>
+					<div class="panel-footer clearfix panel-footer-sm panel-footer-success">
+						<p class="mt0 mb0 left">% change</p>
+						<span class="right sparkline" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">3,5,9,8,6,10</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="panel panel-default mb20 mini-box panel-hovered">
+					<div class="panel-body">
+						<div class="clearfix">
+							<div class="info left">
+								<h4 class="mt0 text-info text-bold">R110K</h4>
+								<h5 class="text-light mb0">Amount Made</h5>
+							</div>
+							<div class="right fa fa-money icon"></div>
+						</div>
+					</div>
+					<div class="panel-footer clearfix panel-footer-sm panel-footer-info">
+						<p class="mt0 mb0 left">% change</p>
+						<span class="right sparkline" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">5,9,9,8,6,6</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="panel panel-default mb20 mini-box panel-hovered">
+					<div class="panel-body">
+						<div class="clearfix">
+							<div class="info left">
+								<h4 class="mt0 text-pink text-bold">10K+</h4>
+								<h5 class="text-light mb0">Created Accounts</h5>
+							</div>
+							<div class="right ion ion-ios-personadd-outline icon"></div>
+						</div>
+					</div>
+					<div class="panel-footer clearfix panel-footer-sm panel-footer-pink">
+						<p class="mt0 mb0 left">% change</p>
+						<span class="sparkline right" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">6,4,9,10,6,2</span>
+					</div>
+				</div>
+			</div>
+			<!-- #end mini boxes -->
+		</div> <!-- #end row -->
+
+		<!-- row -->
+		<div class="row">
+
+			<div class="page page-timeline">
+				<div class="page-wrap">
+					
+					<div class="row">
+						<div class="col-md-12">
+							
+							<!-- timeline start -->
+							<ul class="list-unstyled timeline">
+								<li>
+									<time class="event-time" datetime="2014-05-19 03:04">
+										<div class="date text-light">Today</div>
+										<div class="time h4 mt0">4:32&nbsp;<strong class="text-bold">p.m</strong></div>
+									</time>
+									<span class="event-icon event-icon-success">
+										<i class="ion ion-edit"></i>
+									</span>
+
+									<div class="event">
+										<h5 class="mb15">Attended meetup with <span class="text-muted">unity group</span></h5>
+										<p>Learned a lot about this game engine. Thanks a lot guys. Follow unity group:</p>
+										<canvas id="myChart0" width="400" height="200"></canvas>
+										<p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+
+									</div>
+								</li>
+
+								<li class="on-right">
+									<time class="event-time" datetime="2014-05-19 03:04">
+										<div class="date text-light">Yesterday</div>
+										<div class="time h4 mt0">2:32&nbsp;<strong class="text-bold">a.m</strong></div>
+									</time>
+									<span class="event-icon event-icon-primary">
+										<i class="ion ion-email-unread"></i>
+									</span>
+
+									<div class="event">
+										<h5 class="mb15">Attended meetup with <span class="text-muted">unity group</span></h5>
+										<p>Learned a lot about this game engine. Thanks a lot guys. Follow unity group:</p>
+										<canvas id="myChart2" width="400" height="200"></canvas>
+									</div>
+								</li>
+
+								<li>
+									<time class="event-time" datetime="2014-05-19 03:04">
+										<div class="date text-light">3rd March</div>
+										<div class="time h4 mt0">4:12&nbsp;<strong class="text-bold">p.m</strong></div>
+									</time>
+									<span class="event-icon event-icon-pink">
+										<i class="ion ion-document-text"></i>
+									</span>
+
+									<div class="event">
+										<h5 class="mb15">Web Projects uploaded by <strong class="text-muted">Isha</strong></h5>
+										<p class="small">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</p>
+										<canvas id="myChart1" width="400" height="200"></canvas>
+									</div>
+								</li>
+
+							</ul> <!-- #end timeline -->
+
+						</div> <!-- #end col -->
+					</div> <!-- #end row -->
+
+				</div> <!-- #end page-wrap -->
+
+			</div>
+			
+		</div> <!-- #end row -->
+
+	</div> <!-- #end page-wrap -->
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js"></script>
+<script>
+
+   function choose(choices) {
+  	var index = Math.floor(Math.random() * choices.length);
+  		return choices[index];
+	}
+
+	function graphbarchart(i){
+	var canvas = document.getElementById('myChart' + i);
+	var colors = ["rgba(255,99,132,0.2)", "rgba(255,99,132,0.2)", "rgba(0,0,128,0.2)"];
+	var data = {
+	    labels: ["NULL", "Amount = R0.00", "Amount > R0.00"],
+	    datasets: [
+	        {
+	            label: " " + i,
+	            backgroundColor: ["rgba(255,99,132,0.2)", "rgba(0,128,0,0.2)", "rgba(0,0,128,0.2)"],
+	            borderColor: ["rgba(255,99,132,1)", "rgba(0,128,0,1)", "rgba(0,0,128,1)"],
+	            borderWidth: 2,
+	            hoverBackgroundColor: ["rgba(255,99,132,0.4)", "rgba(0,128,0,0.4)", "rgba(0,0,128,0.4)"],
+	            hoverBorderColor: ["rgba(255,99,132,1)","rgba(0,128,0,1)","rgba(0,0,128,1)"],
+	            data: [65, 59, 20],
+	        }
+	    ]
+	};    
+
+	var option = {
+		scales: {
+	  	yAxes:[{
+	    		stacked:true,
+	        gridLines: {
+	        	display:true,
+	          color: choose(colors),
+	          labelString: 'probability'
+	        }
+	    }],
+	    xAxes:[{
+	    		gridLines: {
+	        	display:false
+	        }
+	    }]
+	  }
+	};
+
+	var myBarChart = Chart.Bar(canvas,{
+		data:data,
+	  options:option
+	});
+}
+for (var i = 2; i >= 0; i--) {
+	graphbarchart(i);
+}
+</script>
+<!-- #end dashboard page -->
+{% endblock %}

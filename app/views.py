@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 import pickle
 import numpy as np
+import pandas as pd
 import json
 import datetime
 
@@ -20,6 +21,8 @@ from django.contrib.auth.models import User
 from django.core import serializers
 import requests
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 # Create your views here.
 
 
@@ -105,7 +108,7 @@ class LoadEmployeesData(View):
         models.Vacancy.objects.all().delete()
 
         print("loading employee pickel file...")
-        employees_data = pickle.load(open('data/employee_data.pkl'))
+        employees_data = pickle.load(open('data/employee_data.pkl', 'rb'))
         print("loading faults json file...")
         faults = json.load(open('data/faults.json'))
         len_employees = len(employees_data)
@@ -144,7 +147,7 @@ class LoadEmployeesData(View):
             emp = employees_data[i]
             ext_index = np.random.randint(len(init_numbers) - 1)
             phone_number = init_numbers[ext_index] + \
-                str(np.random.randint(1000000, 9999999))
+                           str(np.random.randint(1000000, 9999999))
             models.Employee.objects.create(
                 user=user,
                 job_title=emp['title'],
@@ -160,7 +163,7 @@ class LoadEmployeesData(View):
             user = all_users[i]
             ext_index = np.random.randint(len(init_numbers) - 1)
             phone_number = init_numbers[ext_index] + \
-                str(np.random.randint(1000000, 9999999))
+                           str(np.random.randint(1000000, 9999999))
             citezen1 = models.Citizen.objects.create(
                 user=user,
                 cell=phone_number
@@ -187,7 +190,7 @@ class LoadEmployeesData(View):
 
             assert m_fault.reporters.all().count()
 
-            print faults[i - num_employees]
+            print(faults[i - num_employees])
 
         m_faults = models.Fault.objects.all()
 
@@ -200,7 +203,7 @@ class LoadEmployeesData(View):
             for reporter in other_reporters:
                 ext_index = np.random.randint(len(init_numbers) - 1)
                 phone_number = init_numbers[ext_index] + \
-                    str(np.random.randint(1000000, 9999999))
+                               str(np.random.randint(1000000, 9999999))
 
                 citezen = None
 
@@ -239,12 +242,11 @@ class LoadEmployeesData(View):
 
         print("creating vacancies...")
         from difflib import SequenceMatcher
-        import datetime
         faults = models.Fault.objects.all()
         flist = [f.category for f in faults]
         categories = list(pd.unique(flist))
         wanted_skills = []
-        skills = pickle.load(open('data/skills.pkl'))
+        skills = pickle.load(open('data/skills.pkl', 'rb'))
         degree = ['BSc', 'BA', 'BTech', 'Diploma', 'National Certificate']
         jds = employees.values_list('job_desc')
         jtitle = employees.values_list('job_title')
@@ -262,7 +264,8 @@ class LoadEmployeesData(View):
                                wskills[1]][:np.random.randint(1, 6)])[0]
             qualifications = str(
                 degree[np.random.randint(0, len(degree))]) + '., ' + title[0]
-            posting = datetime.datetime.now().date() - datetime.timedelta(np.random.randint(0, 11))
+            posting = datetime.datetime.now().date() - datetime.timedelta(
+                np.random.randint(0, 11))
             closing = posting + datetime.timedelta(np.random.randint(2, 21))
 
             models.Vacancy.objects.create(
@@ -311,4 +314,12 @@ class LoginAuth(View):
             else:
                 return HttpResponse('{"messages":"Wrong password"}')
         except User.DoesNotExist:
-            return HttpResponse('{"message": "username and password incorrect"}')
+            return HttpResponse(
+                '{"message": "username and password incorrect"}')
+
+
+class Timeline(View):
+    template_name = "timeline.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)

@@ -48,4 +48,5 @@ urlpatterns = [
         name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^register/$', views.RegisterUserView.as_view(), name='register'),
+    url(r'^timeline/$', views.Timeline.as_view(), name='timeline'),
 ]
